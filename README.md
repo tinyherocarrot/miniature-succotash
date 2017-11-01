@@ -1,6 +1,8 @@
 # miniature-succotash
 NUBC Project 2
 
-This is Josie
-Casey
-Ammad Shaikh
+Contributors
+*Andrew Huang
+*This is Josie
+*Casey
+*Ammad Shaikh
