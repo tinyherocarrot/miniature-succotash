@@ -1,7 +1,7 @@
 /*---------------------------APP BACKGROUND STYLING*/
 html,body { 
-	width:100%;
-	height:100%;
+  width:100%;
+  height:100%;
   overflow: hidden;
 }
 
@@ -14,10 +14,11 @@ body {
 
 /*---------------------------FONT STYLING*/
 p {
-  color: #fff;
-  font-family: 'Raleway', sans-serif;
-  font-weight: 200;
-  letter-spacing: .1em;
+    font-family: 'Raleway', sans-serif;
+    font-weight: 200;
+    font-size: 12px;
+    letter-spacing: .1em;
+    color: #fff;
 }
 
 h1 {
@@ -30,25 +31,124 @@ h1 {
   text-shadow: 1px 1px 1px #000;
 }
 
-h4 {
-	font-family: 'Raleway', sans-serif;
-	font-weight: 400;
-	font-size: 20px;
-	letter-spacing: .1em;
-	color: #fff;
-	text-align: center;
+h3 {
+  color: #fff;
+  font-family: 'Raleway', sans-serif;
+  text-transform: uppercase;
+  font-weight: 400;
+  letter-spacing: .1em;
+  font-size: 15px;
+  text-align: center;
 }
 
+
+h4 {
+    font-family: 'Montserrat', sans-serif;
+    letter-spacing: .06em;
+    font-weight: 400;
+    font-size: 20px;
+    color: #fff;
+
+}
 
 h5 {
-	color: #fff;
-	font-family: 'Raleway', sans-serif;
-	font-weight: 300;
-	letter-spacing: .1em;
-	font-size: 12px;
+  color: #fff;
+  font-family: 'Raleway', sans-serif;
+  text-transform: uppercase;
+  font-weight: 300;
+  letter-spacing: .1em;
+  font-size: 12px;
 }
 
-/*---------------------------SIGN IN FORM STYLING*/
+hr {
+  border-top: 1px solid #fff;
+  width: 200px;
+}
+
+/*CREATE ACCOUNT PAGE*/
+/*---------------------------FONT STYLING*/
+label {
+  color: #fff;
+  text-transform: uppercase;
+    font-family: 'Montserrat', sans-serif;
+  letter-spacing: .2em;
+  font-weight: 600;
+}
+
+#photoFile {
+    background: rgba(255, 255, 255, 0.2);
+  color: #fff;
+  font-family: 'Raleway', sans-serif;
+  font-weight: 200;
+  letter-spacing: .1em;
+}
+
+legend {
+  color: #fff;
+   font-family: 'Montserrat', sans-serif;
+  font-size: 20px;
+  font-weight: 600;
+  letter-spacing: .1em;
+}
+
+.form-check-label {
+  text-transform: capitalize; 
+  color: #B0B0B0;
+  font-family: 'Raleway', sans-serif;
+}
+
+/*---------------------------NAVBAR STYLING*/
+.navbar {
+  background: rgba(255, 255, 255, 0.2);
+  box-shadow: 0 12px 16px 0 rgba(0,0,0,0.1), 0 17px 50px 0 rgba(0,0,0,0.1);
+
+}
+
+input::-webkit-input-placeholder {
+  color: #d3d3d3 !important;
+}
+
+
+.search-field {
+  background: rgba(255, 255, 255, 0.5);
+  border-style: none;
+  border-radius: 20px;
+  color: #000;
+  width: 70%;
+}
+
+.form-inline {
+  float: right;
+}
+
+.navbar-light .navbar-toggler {
+  border-style: none;
+}
+
+.fa-bars-connection {
+  margin-top: 12px;
+  color: #fff;
+}
+
+.fa-plus-connection {
+  color: #fff;
+  margin-left: 15px;
+}
+
+.fa-bars-style {
+  color: #fff;
+    padding: 14px 0 13px 0;
+}
+
+.fa-plus-style {
+  color: #fff;
+  float: right;
+   padding: 14px 0 13px 0;
+
+}
+
+/*SIGN IN PAGE*/
+/*---------------------------SIGN IN AND SIGN UP FORM STYLING*/
 form {
   display: block;
 }
@@ -59,9 +159,9 @@ form {
   margin: 0 auto;
 }
 
-#inputEmail, #inputPassword {
+.form-box-style {
   background: transparent;
-  border-width: 3px;
+  border-width: 2px;
   margin-top: 5px;
   color: #fff;
   font-family: 'Raleway', sans-serif;
@@ -69,11 +169,15 @@ form {
   letter-spacing: .1em;
 }
 
-input::-webkit-input-placeholder {
-  color: #d3d3d3 !important;
+.form-box-style:focus {
+  background: rgba(255, 255, 255, 0.1);
+  color: #000;
 }
 
-/*---------------------------SIGN IN BUTTON STYLING*/
+input::-webkit-input-placeholder {
+  color:  #B0B0B0 !important;
+}
+
 .sign-in-btn {
   background-color:#9370DB;
   color: #fff;
@@ -89,7 +193,12 @@ input::-webkit-input-placeholder {
   background: #8C6ADD;
 }
 
+a, a:hover, a:active {
+  color: #fff;
+  text-decoration: none;
+}
 
+/*PROFILE PAGE*/
 /*---------------------------LOCATION STYLING*/
 
 .city h5 {
@@ -139,11 +248,11 @@ input::-webkit-input-placeholder {
 }
 
 input:checked + .slider {
-  background-color: #2196F3;
+  background-color: #3cfca9;
 }
 
 input:focus + .slider {
-  box-shadow: 0 0 1px #2196F3;
+  box-shadow: 0 0 1px #3cfca9;
 }
 
 input:checked + .slider:before {
@@ -161,51 +270,6 @@ input:checked + .slider:before {
   border-radius: 50%;
 }
 
-/*---------------------------NAVBAR STTYLING*/
-.navbar {
-  background: rgba(255, 255, 255, 0.2);
-  box-shadow: 0 12px 16px 0 rgba(0,0,0,0.1), 0 17px 50px 0 rgba(0,0,0,0.1);
-
-}
-
-input::-webkit-input-placeholder {
-  color: #d3d3d3 !important;
-}
-
-.search-btn {
-  background: transparent;
-  border-style: none;
-  color: #fff;
-  /*margin-left: 10px;*/
-}
-
-.search-btn:hover {
-  color: #00ff99;
-
-}
-
-.search-field {
-  background: rgba(255, 255, 255, 0.5);
-  border-style: none;
-  border-radius: 20px;
-  color: #fff;
-  width: 70%;
-}
-
-.form-inline {
-  float: right;
-}
-
-.navbar-light .navbar-toggler {
-  border-style: none;
-  color: #fff;
-}
-
-.fa-bars {
-  margin-top: 12px;
-}
-
-/*---------------------------PROFILE PIC STYLING*/
 .img-circle {
   display: block;
   width: 120px;
@@ -217,31 +281,28 @@ input::-webkit-input-placeholder {
   -webkit-border-radius: 99em;
   -moz-border-radius: 99em;
   border-radius: 99em;
-  border: 3px solid #fff;
   box-shadow: 0 3px 2px rgba(0, 0, 0, 0.3);
 }
 
 #wrapper {
   display: inline-block;
-
   margin: 0 auto;
 }
 
 #bg {
   z-index: -1;
   background: rgba(255, 255, 255, 0.3);
-  height: 75%;
+  height: 90%;
   width: 90%;
   top: 0;
   left: 0;
   right: 0;
-  bottom: 0;
+/*  media queries*/
+  bottom: -70px;
   margin: auto;
-  margin-bottom: 5%;
   border-radius: 10px;
   position: absolute;
   box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.1);
-
 }
 
 .container {
@@ -249,42 +310,32 @@ input::-webkit-input-placeholder {
  position: relative;
 }
 
+#container-wrap {
+ z-index: -3;
+ position: relative;
+}
 
+#bio {
+  overflow-y: scroll;
+  height: 200px; 
+  text-align: left;
+  width: 80%;
+  font-size: 14px;
+  margin: 0 auto;
+}
 
-/*.card-back {
+.fa-linkedin-square, .fa-twitter-square {
+  color: #fff;
+  margin: 5px;
+}
 
-  border-radius: 5px;
-  background: rgba(255, 255, 255, 0.3);
-  box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.1);
-  padding:8px;
-  line-height: .5em;
-  margin-bottom: 10px;
-  }*/
+.fa-share-square-o {
+  color: #99ff99;
+}
 
-  #bio {
-    overflow-y: scroll;
-    height: 220px; 
-    text-align: left;
-    width: 80%;
-    font-size: 14px;
-    margin: 0 auto;
-  }
-
-  .fa-linkedin-square, .fa-twitter-square {
-
-    color: #fff;
-    margin: 5px;
-  }
-
-  .fa-share-square-o {
-    color: lightgreen;
-  }
-
-
-
-
-  /*---------------------------SORT BUTTON STYLING*/
-  .sort-btn {
+/*CONNECTIONS PAGE*/
+/*---------------------------SORT BUTTON STYLING*/
+.sort-btn {
     background: rgba(255, 255, 255, 0.3);
     border-style: none;
     border-radius: 20px;
@@ -298,32 +349,13 @@ input::-webkit-input-placeholder {
     margin-bottom: 18px;
     margin-left: 5px;
     margin-right: 5px;
-
   }
 
   .sort-btn:hover {
-    background-color: #00ff99;
+    background-color: #3cfca9;
   }
 
-
-  /*---------------------------CARD STYLING*/
-
-  h4 {
-    font-family: 'Montserrat', sans-serif;
-    letter-spacing: .06em;
-    font-weight: 400;
-    font-size: 20px;
-    color: #fff;
-
-  }
-
-  p {
-    font-family: 'Raleway', sans-serif;
-    font-weight: 200;
-    font-size: 12px;
-    text-transform: uppercase;
-    letter-spacing: .1em;
-  }
+  /*CARD STYLING*/
 
   .card-img {
     height: 100%;
@@ -345,12 +377,12 @@ input::-webkit-input-placeholder {
   }
 
   .more-btn {
-    background-color:rgba(0,255,0,0.5);
+    background-color:#9370DB;
     border-style: none;
     border-radius: 20px;
     color: #fff;
     font-family: 'Raleway', sans-serif;
-    font-weight: 200;
+    font-weight: 300;
     font-size: 12px;
     text-transform: uppercase;
     letter-spacing: .1em;
@@ -372,3 +404,19 @@ input::-webkit-input-placeholder {
     height: 500px;
   }
 
+/*MAIN PAGE - QLINK CONNECT*/
+  .user-code {
+    width:200px;
+    height:200px;
+    border-radius:50%;
+    background: rgba(255, 255, 255, 0.1);
+    box-shadow: 0 14px 28px rgba(0,0,0,0.1), 0 10px 10px rgba(0,0,0,0.1);
+    margin: 50px auto;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 200;
+    letter-spacing: .05em;
+    font-size:34px;
+    color:#fff;
+    line-height:200px;
+    text-align:center;
+  }
