@@ -13,18 +13,84 @@
 </head>
 <body>
 
-<div style="margin-top: 150px; margin-bottom: 100px;"><h1>QLINK</h1></div>
+<div style="margin-top: 40px; margin-bottom: 40px;"><h1>QLINK</h1></div>
 <div class="container">
-	<form class="form-signin">
-		<label for="inputEmail" class="sr-only">Email Address</label>
-		<input type="email" id="inputEmail" class="form-control" placeholder="Email" required autofocus>
-		<label for="inputPassword" class="sr-only">Password</label>
-		<input type="password" id="inputPassword" class="form-control" placeholder="Password" required>
-		<label for="inputPassword" class="sr-only">Repeat Password</label>
-		<input type="password" id="inputPassword" class="form-control" placeholder="Repeat Password" required>
-	
-		<button class="btn sign-in-btn btn-lg btn-block" type="submit">Sign Up</button>
-	</form>
+<form class="scroll">
+
+<div class="form-group">
+    <label for="inputName">Name</label>
+    <input type="text" class="form-control form-box-style" id="inputName" placeholder="Enter Full Name">
+  </div>
+
+<div class="form-group">
+    <label for="inputEmail">Email</label>
+    <input type="email" class="form-control form-box-style" id="inputEmail" aria-describedby="emailHelp" placeholder="Enter email">
+  </div>
+    
+  <div class="form-group">
+    <label for="inputPassword">Password</label>
+    <input type="password" class="form-control form-box-style" id="inputPassword" placeholder="Enter Password">
+  </div>
+
+  <div class="form-group">
+    <label for="inputCity">City</label>
+    <input type="text" class="form-control form-box-style" id="inputCity" placeholder="Enter City">
+  </div>
+
+  <div class="form-group">
+    <label for="inputCompany">Company</label>
+    <input type="text" class="form-control form-box-style" id="inputCompany" placeholder="Enter Company">
+  </div>
+
+  <div class="form-group">
+    <label for="inputTitle">Job Title</label>
+    <input type="text" class="form-control form-box-style" id="inputTitle" placeholder="Enter Job Title">
+  </div>
+
+  <div class="form-group">
+    <label for="textarea">Your Bio</label>
+    <textarea class="form-control form-box-style" id="textarea" rows="3"></textarea>
+  </div>
+
+  <div class="form-group">
+    <label for="photoFile">Upload Photo</label>
+    <input type="file" class="form-control-file" id="photoFile">
+  </div>
+
+<div class="form-group">
+    <label for="inputLinkedin">LinkedIn</label>
+    <input type="url" class="form-control form-box-style" id="inputLinkedin" placeholder="Paste your LinkedIn URL">
+  </div>
+
+  <div class="form-group">
+    <label for="inputTwitter">Twitter</label>
+    <input type="url" class="form-control form-box-style" id="inputTwitter" placeholder="Paste your Twitter URL">
+  </div>
+
+    <div class="form-group">
+    <label for="inputWebsite">Your Website</label>
+    <input type="url" class="form-control form-box-style" id="inputWebsite" placeholder="Paste your Personal Website URL">
+  </div>
+
+  <fieldset class="form-group">
+    <legend>Ready to Share your Talent?</legend>
+    <div class="form-check">
+      <label class="form-check-label">
+        <input type="radio" class="form-check-input" name="optionsRadios" id="optionsRadios1" value="option1" checked>
+        Hire Me
+      </label>
+    </div>
+    <div class="form-check">
+    <label class="form-check-label">
+        <input type="radio" class="form-check-input" name="optionsRadios" id="optionsRadios2" value="option2">
+        Not Looking
+      </label>
+    </div>
+  </fieldset>
+
+  <button type="submit" class="btn sign-in-btn btn-lg btn-block"><a href="profile.html">Submit</a></button>
+
+</form>
 </div>
 
 
