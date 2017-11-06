@@ -1,0 +1,53 @@
+{{!-- NOTE: share.handlebars corresponds to main.html, since main.handlebars already exists --}}
+
+{{!-- NavBar --}}
+<nav class="navbar navbar-toggleable-md navbar-light bg-faded">
+    <button class="navbar-toggler navbar-toggler-left" type="button" data-toggle="collapse" data-target="#navbarContent" aria-controls="navbarContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span>
+            <i class="fa fa-bars fa-bars-style fa-lg" href="main.html" aria-hidden="true"></i>
+        </span>
+    </button>
+    
+    <button>
+        <span>
+            <a href="main.html"> 
+                <i class="fa fa-plus fa-plus-style fa-lg" aria-hidden="true"></i>
+            </a>
+        </span>
+    </button>
+    
+    {{!-- Hamburger Menu --}}
+    <div class="collapse navbar-collapse" id="navbarContent">
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item">
+                <a class="nav-link" href="profile.html">Profile</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/connections">Connections</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="login.html" id="sign-out-button">Sign Out</a>
+            </li>
+        </ul>
+    </div>
+</nav>
+
+<div class="container">
+    <div class="user-code">
+        {{!-- load user's unique code --}}
+    </div>
+
+    <h3>Share your unique code &uarr;</h3>
+    <hr>
+  
+    <h3>enter their's &darr;</h3>
+    <br>
+
+    <div class="form-group">
+        <input type="text" class="form-control form-box-style" id="inputCode" placeholder="Enter Someone's Code">
+    </div>
+
+    <button type="submit" class="btn sign-in-btn btn-lg btn-block">
+        <a href="connections.html">Add</a>
+    </button>
+</div>

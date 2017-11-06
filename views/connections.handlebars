@@ -1,0 +1,98 @@
+{{!-- NavBar --}}
+<nav class="navbar navbar-toggleable-md navbar-light bg-faded">
+    <button class="navbar-toggler navbar-toggler-left" type="button" data-toggle="collapse" data-target="#navbarContent" aria-controls="navbarContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span>
+            <i class="fa fa-bars fa-bars-connection fa-lg" aria-hidden="true"></i>
+        </span>
+    </button>
+    <form class="form-inline my-2 my-lg-0 justify-content-end">
+        <input class="search-field form-control mr-sm-2" type="text" placeholder="&#xf002;" style="font-family: Arial, FontAwesome;">
+        <a href="main.html"> 
+            <i class="fa fa-plus fa-plus-connection fa-lg" aria-hidden="true"></i>
+        </a>
+    </form>    
+
+    {{!-- Hamburger Menu --}}
+    <div class="collapse navbar-collapse" id="navbarContent">
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item">
+                <a class="nav-link" href="profile.html">Profile</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/connections">Connections</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="login.html" id="sign-out-button">Sign Out</a>
+            </li>
+        </ul>
+    </div>
+</nav>
+
+
+
+{{!-- Sort Contacts by... --}}
+<div class="wrapper">
+    <div style="text-align: center;">
+        <button class="btn sort-btn btn-lg">New</button>
+        <button class="btn sort-btn btn-lg">Alphabetical</button>
+    </div>
+
+    {{!-- Contacts display here --}}
+    <div class="scroll">
+        {{#each connections}}
+            <div class="card-back">
+            	<img class="card-img" src="./images/profile_pic.jpg">
+            	<div class="details">
+            		<h4>Andrew Carrot</h4>
+            	    <p>Where they Work</p>
+                    <p>Job Title</p>
+            	    {{!-- <button class="btn more-btn btn-sm">Full Profile</button> --}}
+                    {{!-- default hide info from here down --}}
+            	</div>
+            </div>
+        {{/each}}
+
+        {{!-- 
+        <div class="card-back">
+          <img class="card-img" src="../images/profile_pic.jpg">
+          <div class="details">
+            <h4>Andrew Carrot</h4>
+              <p>Where they Work</p>
+              <p>Job Title</p>
+              <button class="btn more-btn btn-sm">Full Profile</button>
+          </div>
+        </div>
+
+        <div class="card-back">
+          <img class="card-img" src="../images/profile_pic.jpg">
+          <div class="details">
+            <h4>Andrew Carrot</h4>
+              <p>Where they Work</p>
+              <p>Job Title</p>
+              <button class="btn more-btn btn-sm">Full Profile</button>
+          </div>
+        </div>
+
+        <div class="card-back">
+          <img class="card-img" src="../images/profile_pic.jpg">
+          <div class="details">
+            <h4>Andrew Carrot</h4>
+              <p>Where they Work</p>
+              <p>Job Title</p>
+              <button class="btn more-btn btn-sm">Full Profile</button>
+          </div>
+        </div>
+
+        <div class="card-back">
+          <img class="card-img" src="../images/profile_pic.jpg">
+          <div class="details">
+            <h4>Andrew Carrot</h4>
+              <p>Where they Work</p>
+              <p>Job Title</p>
+              <button class="btn more-btn btn-sm">Full Profile</button>
+          </div>
+        </div>
+     --}}
+    </div>
+
+</div>
