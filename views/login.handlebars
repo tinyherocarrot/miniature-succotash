@@ -4,16 +4,16 @@
 
 <div class="container">
 
-	<form class="form-signin">
+	<form action="/signin" method="POST" class="form-signin">
 		<label for="inputEmail" class="sr-only">Email Address</label>
-		<input type="email" id="inputEmail" class="form-control form-box-style" placeholder="Email" required autofocus>
+		<input type="email" name="email" id="inputEmail" class="form-control form-box-style" placeholder="Email" required autofocus>
 		<label for="inputPassword" class="sr-only">Password</label>
-		<input type="password" id="inputPassword" class="form-control form-box-style" placeholder="Password" required>
+		<input type="password" name="user_password" id="inputPassword" class="form-control form-box-style" placeholder="Password" required>
 
 		<button class="btn sign-in-btn btn-lg btn-block" type="submit" id="sign-in">Sign In</button>
-
+		
 		{{!-- Create Account option routes to createaccount.handlebars --}}
-		<button class="btn sign-in-btn btn-lg btn-block"> <a href="/signup">Create Account</a></button>
+		<button action="/signup" method="GET" class="btn sign-in-btn btn-lg btn-block"> <a href="/signup">Create Account</a></button>
 
 		{{!-- TODO : add option for LinkedIn Signin  --}}
 	</form>

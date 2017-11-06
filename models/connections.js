@@ -10,12 +10,20 @@ module.exports = function(sequelize, DataTypes) {
 				autoIncrement: true
 			},
 			sender_id: {
-				type: DataTypes.INTEGER
-				// allowNull: false
+				type: DataTypes.INTEGER,
+				allowNull: false
 			},
 			receiver_id: {
-				type: DataTypes.INTEGER
-				// allowNull: false
+				type: DataTypes.INTEGER,
+				allowNull: false
+			},
+			meeting_place: {
+				type: DataTypes.STRING,
+				allowNull: true
+			},
+			user_notes: {
+				type: DataTypes.TEXT,
+				allowNull: true
 			}
 		},
 		{
@@ -23,13 +31,21 @@ module.exports = function(sequelize, DataTypes) {
 		}
 	);
 
-	Connections.associate = function(db) {
-		// Connections.belongsTo(db.User);
-		Connections.belongsTo(db.User, {
-			foreignKey: "connection_id",
-			sourceKey: "user_id"
-		});
-	};
+	// Connections.associate = function(db) {
+	// 	// A Connection belongs to a User by (connection.sender_id, users.user_id)
+	// 	Connections.belongsTo(db.User, {
+	// 		onDelete: "CASCADE",
+	// 		foreignKey: "sender_id",
+	// 		targetKey: "user_id"
+	// 	});
+
+	// a connection points to one user by (connection.reciever_id, users.user_id)
+	// Connections.hasOne(db.User, {
+	// 	onDelete: "CASCADE",
+	// 	foreignKey: "reciever_id",
+	// 	targetKey: "user_id"
+	// });
+	// };
 
 	return Connections;
 };

@@ -60,24 +60,24 @@ module.exports = function(sequelize, DataTypes) {
 			},
 			linkedin: {
 				type: DataTypes.STRING,
-				allowNull: true,
-				validate: {
-					isUrl: true
-				}
+				allowNull: true
+				// validate: {
+				// 	isUrl: true
+				// }
 			},
 			twitter: {
 				type: DataTypes.STRING,
-				allowNull: true,
-				validate: {
-					isUrl: true
-				}
+				allowNull: true
+				// validate: {
+				// 	isUrl: true
+				// }
 			},
 			other_website: {
 				type: DataTypes.STRING,
-				allowNull: true,
-				validate: {
-					isUrl: true
-				}
+				allowNull: true
+				// validate: {
+				// 	isUrl: true
+				// }
 			},
 			hire_me: {
 				type: DataTypes.BOOLEAN,
@@ -87,13 +87,18 @@ module.exports = function(sequelize, DataTypes) {
 		{ timestamps: false }
 	);
 
-	User.associate = function(db) {
-		// User.hasMany(db.Connections);
-		User.hasMany(db.Connections, {
-			foreignKey: "connection_id",
-			targetKey: "user_id"
-		});
-	};
+	// User.associate = function(db) {
+	// 	// Users have many in Connections by (connections.initiator_id, users.user_id)
+	// 	User.hasMany(db.Connections, {
+	// 		onDelete: "CASCADE"
+	// 	});
+
+	// 	// Users belong to Connection by (connections.reciever_id, users.user_id)
+	// 	User.belongsToMany(db.Connections, {
+	// 		// creates a new model called "contacts"
+	// 		through: "contacts"
+	// 	});
+	// };
 
 	return User;
 };

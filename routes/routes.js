@@ -1,5 +1,7 @@
 var db = require("../models/");
 var path = require("path");
+var session = require("express-session");
+// res.session
 
 module.exports = function(app) {
 	// set up handlebars.js
@@ -13,50 +15,120 @@ module.exports = function(app) {
 	// root, routes to login.handlebars
 	app.get("/", function(req, res) {
 		// if user is already logged in,
-		if (localStorage.getItem("user_id")) {
-			// use stored user_id to login
-			var user_id = localStorage.getItem("user_id");
-			res.redirect(`/profile/${user_id}`);
-			// else redirect to login page
-		} else {
-			res.render("login", {});
-		}
+		// if (localStorage.getItem("user_id")) {
+		// 	// use stored user_id to login
+		// 	var user_id = res.redirect(`/connections/${user_id}`);
+		// 	// else redirect to login page
+		// } else {
+		res.render("login", {});
+		// }
 	});
 	// signup routes to createaccount.handlebars
 	app.get("/signup", function(req, res) {
 		res.render("createaccount", {});
 	});
-	// loads the connections.html page, where all your connections in the db are displayed
-	app.get("/connections", function(req, res) {
-		res.sendFile(path.join(__dirname, "../views/connections.handlebars"));
+	// signin routes to get account information using email and password
+	app.post("/signin", function(req, res) {
+		console.log("Got: ", req.body, req.method, req.path);
+
+		var email = req.body.email;
+		var user_password = req.body.user_password;
+		db.User
+			.findOne({
+				where: {
+					email: email,
+					user_password: user_password
+				}
+			})
+			.then(results => res.render("connections", {}));
 	});
-	// loads the profile.html page, where your personal editable profile is displayed
-	app.get("/profile/:id", function(req, res) {
-		db.users
-			.findAll({ where: { user_id: req.params.id } })
-			.then(results => {
-				res.render("profile", results);
+
+	// loads the connections.html page, where all your connections in the db are displayed
+	app.get("/connections/:id", function(req, res) {
+		console.log("Got: ", req.body, req.method, req.path);
+
+		// Get the user_id of the logged in user
+		var user_id = req.params.id;
+
+		// Find all connection rows associated with user_id
+		db.Connections
+			.findAll({
+				where: { sender_id: user_id }
+			})
+			.then(connections => {
+				var connectionsArray = [];
+				var sender_id;
+				var receiver_id;
+				// Push the id's of all the users connected with the main user to connectionsArray
+				for (var i = 0; i < connections.length; i++) {
+					sender_id = connections[i].dataValues.sender_id;
+					receiver_id = connections[i].dataValues.receiver_id;
+					// Logic that pushes only the corresponding user id's
+					if (sender_id === user_id) {
+						if (receiver_id) {
+							connectionsArray.push(receiver_id);
+						}
+					} else if (receiver_id === user_id) {
+						if (sender_id) {
+							connectionsArray.push(sender_id);
+						}
+					}
+				}
+
+				console.log("============");
+				console.log(
+					"User " + user_id + "'s Connections: ",
+					connectionsArray
+				);
+				console.log("============");
+
+				// Find all users with the corresponding to connectionsArray and display them
+				db.User
+					.findAll({
+						where: {
+							user_id: connectionsArray
+						}
+					})
+					.then(data => {
+						var userObject = {
+							user: data
+						};
+
+						res.render("connections", userObject);
+					});
 			});
 	});
-	// loads the main.html page, where you can connect with other users
-	app.get("/main", function(req, res) {
-		res.sendFile(path.join(__dirname, "../views/main.handlebars"));
+	// loads the profile page, where your personal editable profile is displayed
+	app.get("/profile/", function(req, res) {
+		db.User.findOne({ where: { user_id: req.body.id } }).then(results => {
+			res.render("profile", results);
+		});
+	});
+	// loads the share page, where you can connect with other users
+	app.get("/share", function(req, res) {
+		res.render("share", {});
 	});
 
 	// Routes for 'Users' Table
 	// ===============================================================================
 	// GET route for viewing *all* the Users
-	app.get("/api/users", function(req, res) {
+	app.get("/api/all-users", function(req, res) {
 		console.log("Got: ", req.body, req.method, req.path);
 
-		db.users.findAll({}).then(results => res.json(results));
+		db.User.findAll({}).then(results => res.json(results));
 	});
 
 	// POST route for adding a new User profile
-	app.post("/api/users", function(req, res) {
+	app.post("/signup", function(req, res) {
 		console.log("Got: ", req.body, req.method, req.path);
+		var is_looking;
+		if (req.body.hire_me === true) {
+			is_looking = true;
+		} else {
+			is_looking = false;
+		}
 
-		db.users
+		db.User
 			.create({
 				first_name: req.body.first_name,
 				last_name: req.body.last_name,
@@ -70,13 +142,13 @@ module.exports = function(app) {
 				linkedin: req.body.linkedin,
 				twitter: req.body.twitter,
 				other_website: req.body.other_website,
-				hire_me: req.body.hire_me
+				hire_me: is_looking
 			})
 			.then(results => {
-				res.json(results);
+				// res.json(results);
 
 				// after user has been added, then assign their unique Qlink code
-				db.users
+				db.User
 					.update(
 						{ qlink_code: 99999 + results.user_id },
 						{
@@ -84,9 +156,9 @@ module.exports = function(app) {
 						}
 					)
 					// and save user_id to local storage
-					.then(results =>
-						localStorage.setItem("user_id", results.user_id)
-					);
+					.then(results => {
+						res.redirect(`profile/${results.user_id}`);
+					});
 			});
 	});
 
@@ -94,7 +166,7 @@ module.exports = function(app) {
 	app.put("/api/users/:id", function(req, res) {
 		console.log("Got: ", req.body, req.method, req.path);
 
-		db.users
+		db.User
 			.update(
 				{},
 				{
@@ -112,7 +184,7 @@ module.exports = function(app) {
 	app.delete("/api/users/:id", function(req, res) {
 		console.log("Got: ", req.body, req.method, req.path);
 
-		db.users
+		db.User
 			.destroy({
 				where: { id: req.params.id }
 			})
@@ -126,23 +198,58 @@ module.exports = function(app) {
 	// Routes for 'Connections' Table
 	// ===============================================================================
 	// GET route for viewing all connections where user is the sender
-	app.get("/api/connections/:user_id", function(req, res) {
+	app.get("/api/connections/", function(req, res) {
 		console.log("Got: ", req.body, req.method, req.path);
 
-		db.users
-			.findAndCountAll({
-				include: [
-					{
-						model: Connections,
-						as: "contacts",
-						where: { sender_id: req.params.user_id },
-						include: [{ model: User }]
-					}
-				]
+		// Get the user_id of the logged in user
+		var user_id = req.body.user_id;
+
+		// Find all connection rows associated with user_id
+		db.Connections
+			.findAll({
+				where: { sender_id: user_id }
 			})
-			.then(result => {
-				console.log(result.count);
-				res.json(result.rows);
+			.then(connections => {
+				var connectionsArray = [];
+				var sender_id;
+				var receiver_id;
+				// Push the id's of all the users connected with the main user to connectionsArray
+				for (var i = 0; i < connections.length; i++) {
+					sender_id = connections[i].dataValues.sender_id;
+					receiver_id = connections[i].dataValues.receiver_id;
+					// Logic that pushes only the corresponding user id's
+					if (sender_id === user_id) {
+						if (receiver_id) {
+							connectionsArray.push(receiver_id);
+						}
+					} else if (receiver_id === user_id) {
+						if (sender_id) {
+							connectionsArray.push(sender_id);
+						}
+					}
+				}
+
+				console.log("============");
+				console.log(
+					"User " + user_id + "'s Connections: ",
+					connectionsArray
+				);
+				console.log("============");
+
+				// Find all users with the corresponding to connectionsArray and display them
+				db.User
+					.findAll({
+						where: {
+							user_id: connectionsArray
+						}
+					})
+					.then(data => {
+						var userObject = {
+							user: data
+						};
+
+						res.render("index", userObject);
+					});
 			});
 	});
 
@@ -150,8 +257,24 @@ module.exports = function(app) {
 	app.post("/api/connections", function(req, res) {
 		console.log("Got: ", req.body, req.method, req.path);
 
-		db.users.create({}).then(results => {
-			res.json(results);
-		});
+		// Get the user_id of the logged in user
+		var user_id = req.body.user_id;
+		var target_id = req.body.target_id;
+		var meeting_place = req.body.meeting_place;
+		var user_notes = req.body.user_notes;
+
+		console.log("*******user_id: " + user_id);
+		console.log("*******target_id: " + target_id);
+
+		db.Connections
+			.create({
+				sender_id: user_id,
+				receiver_id: target_id,
+				meeting_place: meeting_place,
+				user_notes: user_notes
+			})
+			.then(data => {
+				console.log("*******data.connection_id: " + data.connection_id);
+			});
 	});
 };

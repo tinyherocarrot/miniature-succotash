@@ -6,14 +6,22 @@ $(document).ready(function() {
 
 	// Event Listeners
 	// ---------------------------------------------
-	$(document).on("click", "sign-in", signIn);
-	$(document).on("click", "#create-new-account", createNewAccount);
+	// $(document).on("click", "#sign-in", signIn);
+	// $(document).on("click", "#create-new-account", createNewAccount);
 
 	// Functions
 	// ---------------------------------------------
+	// handle signing in existing user, saving user id to local storage
 	var signIn = function(event) {
 		event.preventDefault();
-		// handle signing in existing user, saving user id to local storage
+		$.post("/signin", {
+			email: $("#inputEmail")
+				.val()
+				.trim(),
+			user_password: $("#inputPassword").val()
+		}).done(data => {
+			alert("lalalal");
+		});
 	};
 
 	// build a new User object, AJAX call to post new user object
