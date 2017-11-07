@@ -47,8 +47,34 @@
                 		<h4>{{this.first_name}}{{this.last_name}}</h4>
                 	    <p>Where they Work</p>
                         <p>Job Title</p>
+
+
                 	    {{!-- <button class="btn more-btn btn-sm">Full Profile</button> --}}
                         {{!-- default hide info from here down --}}
+                        <p>{{this.bio}}</p>
+                    
+              {{!-- add event and notes to DB under initiator --}}
+                    <p>{{this.event}}</p>
+                    <p>{{this.notes}}</p>
+
+    <button>
+        <span>
+            <a href="{{this.linkedin}}"> 
+                <i class="fa fa-linkedin-square fa-2x" aria-hidden="true"></i>
+            </a>
+        </span>
+    </button>
+
+    <button>
+        <span>
+            <a href="{{this.twitter}}"> 
+                <i class="fa fa-twitter-square fa-2x" aria-hidden="true"></i>
+            </a>
+        </span>
+    </button>
+
+
+
                 	</div>
                 </div>
             {{/each}}
