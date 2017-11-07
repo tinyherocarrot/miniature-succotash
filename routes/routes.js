@@ -5,13 +5,13 @@ module.exports = function(app) {
 	var path = require("path");
 	// set up session storage
 	var session = require("express-session");
-	app.set("trust proxy", 1); // trust first proxy
+	// app.set("trust proxy", 1); // trust first proxy
 	app.use(
 		session({
 			secret: "keyboard cat",
 			resave: false,
 			saveUninitialized: true,
-			cookie: { secure: true }
+			cookie: { secure: false }
 		})
 	);
 	// set up handlebars.js
@@ -60,13 +60,16 @@ module.exports = function(app) {
 		var user_id = parseInt(req.session.user_id);
 
 		db.User
-			.findAll({
-				include: [
-					{
-						model: db.Connections
-					}
-				]
-			})
+			.findAll(
+				{
+					include: [
+						{
+							model: db.Connections
+						}
+					]
+				}
+				// { order: [db.User, "createdAt", "ASC"] }
+			)
 			.then(users => {
 				// Make a map of user objects
 
@@ -167,11 +170,32 @@ module.exports = function(app) {
 				res.render("profile", { results: results });
 			});
 	});
-	// loads the share page, where you can connect with other users
+
+	// Share Routes
+	// ==============================================================
+	// Loads the 'Share qlink' page, where you can connect with other users
 	app.get("/share", function(req, res) {
 		res.render("share", { qlink_code: req.session.qlink_code });
 	});
-	// creates connection row in Connections table
+
+	// Loads the 'Share Notes' page
+	app.post("/share", function(req, res) {
+		// TODO Check this for front end matching
+		var target_qlink = req.body.target_qlink;
+		// Query the db for target user
+		db.User
+			.findAll({
+				where: { qlink_code: target_qlink }
+			})
+			.then(user => {
+				var userObj = {
+					results: user[0]
+				};
+				res.render("share_notes", userObj);
+			});
+	});
+
+	// Creates a connection row in Connections table
 	app.post("/connections", function(req, res) {
 		var user_id = req.session.user_id;
 		var target_id = req.body.target_id;
@@ -364,6 +388,7 @@ module.exports = function(app) {
 			})
 			.then(data => {
 				console.log("*******data.connection_id: " + data.connection_id);
+				res.json(data);
 			});
 	});
 };
