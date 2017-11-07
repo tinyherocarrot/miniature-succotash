@@ -57,7 +57,6 @@ module.exports = function(app) {
 
 	// loads the connections.html page, where all your connections in the db are displayed
 	app.get("/connections", (req, res) => {
-		req.session.user_id = 1;
 		var user_id = parseInt(req.session.user_id);
 
 		db.User
@@ -174,8 +173,6 @@ module.exports = function(app) {
 	});
 	// creates connection row in Connections table
 	app.post("/connections", function(req, res) {
-		req.session.user_id = 1;
-
 		var user_id = req.session.user_id;
 		var target_id = req.body.target_id;
 		var meeting_place = req.body.meeting_place;
