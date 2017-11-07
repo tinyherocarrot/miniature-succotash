@@ -113,10 +113,13 @@ module.exports = function(app) {
 			});
 	});
 	// loads the profile page, where your personal editable profile is displayed
-	app.get("/profile/:id", function(req, res) {
-		db.User.findOne({ where: { user_id: req.params.id } }).then(results => {
-			res.render("profile", results);
-		});
+	app.get("/profile", function(req, res) {
+		db.User
+			.findOne({ where: { user_id: req.session.user_id } })
+			.then(results => {
+				console.log(req.session.user_id);
+				res.render("profile", { results: results });
+			});
 	});
 	// loads the share page, where you can connect with other users
 	app.get("/share", function(req, res) {
