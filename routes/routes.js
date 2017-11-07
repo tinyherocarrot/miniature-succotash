@@ -1,9 +1,19 @@
 var db = require("../models/");
-var path = require("path");
-var session = require("express-session");
 // res.session
 
 module.exports = function(app) {
+	var path = require("path");
+	// set up session storage
+	var session = require("express-session");
+	app.set("trust proxy", 1); // trust first proxy
+	app.use(
+		session({
+			secret: "keyboard cat",
+			resave: false,
+			saveUninitialized: true,
+			cookie: { secure: true }
+		})
+	);
 	// set up handlebars.js
 	var exphbs = require("express-handlebars");
 	app.engine("handlebars", exphbs({ defaultLayout: "main" }));
@@ -14,14 +24,11 @@ module.exports = function(app) {
 	// ================================================================================
 	// root, routes to login.handlebars
 	app.get("/", function(req, res) {
-		// if user is already logged in,
-		// if (localStorage.getItem("user_id")) {
-		// 	// use stored user_id to login
-		// 	var user_id = res.redirect(`/connections/${user_id}`);
-		// 	// else redirect to login page
-		// } else {
-		res.render("login", {});
-		// }
+		if (req.session.user_id) {
+			res.redirect(`/connections/${req.session.user_id}`);
+		} else {
+			res.render("login", {});
+		}
 	});
 	// signup routes to createaccount.handlebars
 	app.get("/signup", function(req, res) {
@@ -40,15 +47,21 @@ module.exports = function(app) {
 					user_password: user_password
 				}
 			})
-			.then(results => res.render("connections", {}));
+			.then(results => {
+				console.log("look at me! ", results);
+				req.session.user_id = results.dataValues.user_id;
+				req.session.qlink_code = results.dataValues.qlink_code;
+				res.redirect(`/connections`);
+			});
 	});
 
 	// loads the connections.html page, where all your connections in the db are displayed
-	app.get("/connections/:id", function(req, res) {
+	app.get("/connections", function(req, res) {
+		// res.render("connections", {});
 		console.log("Got: ", req.body, req.method, req.path);
 
 		// Get the user_id of the logged in user
-		var user_id = req.params.id;
+		var user_id = req.session.user_id;
 
 		// Find all connection rows associated with user_id
 		db.Connections
@@ -90,23 +103,24 @@ module.exports = function(app) {
 						}
 					})
 					.then(data => {
+						console.log("right before rendering connections page");
 						var userObject = {
 							user: data
 						};
 
-						res.render("connections", userObject);
+						res.render("connections", { results: userObject });
 					});
 			});
 	});
 	// loads the profile page, where your personal editable profile is displayed
-	app.get("/profile/", function(req, res) {
-		db.User.findOne({ where: { user_id: req.body.id } }).then(results => {
+	app.get("/profile/:id", function(req, res) {
+		db.User.findOne({ where: { user_id: req.params.id } }).then(results => {
 			res.render("profile", results);
 		});
 	});
 	// loads the share page, where you can connect with other users
 	app.get("/share", function(req, res) {
-		res.render("share", {});
+		res.render("share", { qlink_code: req.session.qlink_code });
 	});
 
 	// Routes for 'Users' Table
@@ -145,7 +159,8 @@ module.exports = function(app) {
 				hire_me: is_looking
 			})
 			.then(results => {
-				// res.json(results);
+				// and save user_id to session storage
+				req.session.user_id = results.dataValues.user_id;
 
 				// after user has been added, then assign their unique Qlink code
 				db.User
@@ -155,9 +170,8 @@ module.exports = function(app) {
 							where: { user_id: results.user_id }
 						}
 					)
-					// and save user_id to local storage
 					.then(results => {
-						res.redirect(`profile/${results.user_id}`);
+						res.redirect(`profile/${res.session.user_id}`);
 					});
 			});
 	});

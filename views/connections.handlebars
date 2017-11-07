@@ -7,7 +7,7 @@
     </button>
     <form class="form-inline my-2 my-lg-0 justify-content-end">
         <input class="search-field form-control mr-sm-2" type="text" placeholder="&#xf002;" style="font-family: Arial, FontAwesome;">
-        <a href="main.html"> 
+        <a href="/share"> 
             <i class="fa fa-plus fa-plus-connection fa-lg" aria-hidden="true"></i>
         </a>
     </form>    
@@ -39,19 +39,24 @@
 
     {{!-- Contacts display here --}}
     <div class="scroll">
-        {{#each connections}}
+        {{#if results.length}}
+            {{#each connections}}
+                <div class="card-back">
+                	<img class="card-img" src="./images/profile_pic.jpg">
+                	<div class="details">
+                		<h4>{{this.first_name}}{{this.last_name}}</h4>
+                	    <p>Where they Work</p>
+                        <p>Job Title</p>
+                	    {{!-- <button class="btn more-btn btn-sm">Full Profile</button> --}}
+                        {{!-- default hide info from here down --}}
+                	</div>
+                </div>
+            {{/each}}
+        {{else}}
             <div class="card-back">
-            	<img class="card-img" src="./images/profile_pic.jpg">
-            	<div class="details">
-            		<h4>Andrew Carrot</h4>
-            	    <p>Where they Work</p>
-                    <p>Job Title</p>
-            	    {{!-- <button class="btn more-btn btn-sm">Full Profile</button> --}}
-                    {{!-- default hide info from here down --}}
-            	</div>
+                <div class="details"> There are no contacts to display. Press '+' to get started</div>
             </div>
-        {{/each}}
-
+        {{/if}}
         {{!-- 
         <div class="card-back">
           <img class="card-img" src="../images/profile_pic.jpg">
