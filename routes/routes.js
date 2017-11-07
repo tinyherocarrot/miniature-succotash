@@ -32,7 +32,7 @@ module.exports = function(app) {
 	});
 	// signup routes to createaccount.handlebars
 	app.get("/signup", function(req, res) {
-		res.render("createaccount", {});
+		res.render("profile_create", {});
 	});
 	// signin routes to get account information using email and password
 	app.post("/signin", function(req, res) {
