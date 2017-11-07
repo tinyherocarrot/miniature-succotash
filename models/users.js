@@ -87,18 +87,12 @@ module.exports = function(sequelize, DataTypes) {
 		{ timestamps: false }
 	);
 
-	// User.associate = function(db) {
-	// 	// Users have many in Connections by (connections.initiator_id, users.user_id)
-	// 	User.hasMany(db.Connections, {
-	// 		onDelete: "CASCADE"
-	// 	});
-
-	// 	// Users belong to Connection by (connections.reciever_id, users.user_id)
-	// 	User.belongsToMany(db.Connections, {
-	// 		// creates a new model called "contacts"
-	// 		through: "contacts"
-	// 	});
-	// };
+	User.associate = function(db) {
+		User.hasMany(db.Connections, {
+			foreignKey: "receiver_id",
+			targetKey: "user_id"
+		});
+	};
 
 	return User;
 };
