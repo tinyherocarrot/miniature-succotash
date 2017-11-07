@@ -4,13 +4,13 @@ module.exports = function(app) {
 	var path = require("path");
 	// set up session storage
 	var session = require("express-session");
-	app.set("trust proxy", 1); // trust first proxy
+	// app.set("trust proxy", 1); // trust first proxy
 	app.use(
 		session({
 			secret: "keyboard cat",
 			resave: false,
 			saveUninitialized: true,
-			cookie: { secure: true }
+			cookie: { secure: false }
 		})
 	);
 	// set up handlebars.js
@@ -50,11 +50,20 @@ module.exports = function(app) {
 				console.log("look at me! ", results);
 				req.session.user_id = results.dataValues.user_id;
 				req.session.qlink_code = results.dataValues.qlink_code;
+				console.log(
+					"after a signin, saved user_id is: ",
+					req.session.user_id
+				);
+				console.log(
+					"after a signin, saved qlink_code is: ",
+					req.session.qlink_code
+				);
+
 				res.redirect(`/connections`);
 			});
 	});
 
-	// loads the connections.html page, where all your connections in the db are displayed
+	// loads the connections page, where all your connections in the db are displayed
 	app.get("/connections", (req, res) => {
 		var user_id = parseInt(req.session.user_id);
 
@@ -162,13 +171,24 @@ module.exports = function(app) {
 		db.User
 			.findOne({ where: { user_id: req.session.user_id } })
 			.then(results => {
-				console.log(req.session.user_id);
+				console.log(
+					"after profile fetch, saved id is: ",
+					req.session.user_id
+				);
 				res.render("profile", { results: results });
 			});
 	});
 	// loads the share page, where you can connect with other users
 	app.get("/share", function(req, res) {
-		res.render("share", { qlink_code: req.session.qlink_code });
+		console.log(
+			"going to share page, saved qlink_code is: ",
+			req.session.qlink_code
+		);
+		var formattedQCode =
+			req.session.qlink_code.toString().substring(0, 3) +
+			" - " +
+			req.session.qlink_code.toString().substring(3, 6);
+		res.render("share", { qlink_code: formattedQCode });
 	});
 	// creates connection row in Connections table
 	app.post("/connections", function(req, res) {
@@ -216,42 +236,61 @@ module.exports = function(app) {
 			is_looking = false;
 		}
 
-		db.User
-			.create({
-				first_name: req.body.first_name,
-				last_name: req.body.last_name,
-				email: req.body.email,
-				user_password: req.body.user_password,
-				city: req.body.city,
-				organization: req.body.organization,
-				role: req.body.role,
-				bio: req.body.bio,
-				user_photo: req.body.user_photo,
-				linkedin: req.body.linkedin,
-				twitter: req.body.twitter,
-				other_website: req.body.other_website,
-				hire_me: is_looking
-			})
-			.then(results => {
-				// and save user_id to session storage
-				req.session.user_id = results.dataValues.user_id;
+		var newAccount = {
+			first_name: req.body.first_name,
+			last_name: req.body.last_name,
+			email: req.body.email,
+			user_password: req.body.user_password,
+			city: req.body.city,
+			organization: req.body.organization,
+			role: req.body.role,
+			bio: req.body.bio,
+			user_photo: req.body.user_photo,
+			linkedin: req.body.linkedin,
+			twitter: req.body.twitter,
+			other_website: req.body.other_website,
+			hire_me: is_looking
+		};
 
-				// after user has been added, then assign their unique Qlink code
-				db.User
-					.update(
-						{ qlink_code: 99999 + results.user_id },
-						{
-							where: { user_id: results.user_id }
-						}
-					)
-					.then(results => {
-						res.redirect(`profile/`);
-					});
-			});
+		db.User.create(newAccount).then(results => {
+			// and save user_id, qlink_code to session storage
+			var qlink_code = 99999 + results.user_id;
+			req.session.user_id = results.dataValues.user_id;
+			req.session.qlink_code = qlink_code;
+			console.log(
+				"after user creation, saved id is: ",
+				req.session.user_id,
+				"and save qlink_code is: ",
+				req.session.qlink_code
+			);
+			// after user has been added, then assign their unique Qlink code
+			db.User
+				.update(
+					{ qlink_code: qlink_code },
+					{
+						where: { user_id: req.session.user_id }
+					}
+				)
+				.then(results => {
+					res.render(`profile`, { results: newAccount });
+				});
+		});
 	});
 
+	// GET route for loading existing profile info into Profile Editor
+	app.get("/profile/edit", function(req, res) {
+		db.User
+			.findOne({ where: { user_id: req.session.user_id } })
+			.then(results => {
+				console.log(
+					"after profile fetch, saved id is: ",
+					req.session.user_id
+				);
+				res.render("profile_update", { results: results });
+			});
+	});
 	// PUT route for updating a User profile
-	app.put("/update-profile", function(req, res) {
+	app.put("/profile/update", function(req, res) {
 		console.log("Got: ", req.body, req.method, req.path);
 		var is_looking;
 		if (req.body.hire_me === true) {

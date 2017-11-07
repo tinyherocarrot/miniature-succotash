@@ -58,21 +58,21 @@
                     <p>Meeting Place: {{this.meeting_place}}</p>
                     <p>Notes: {{this.user_notes}}</p>
 
-    <button>
-        <span>
-            <a href="{{this.linkedin}}"> 
-                <i class="fa fa-linkedin-square fa-2x" aria-hidden="true"></i>
-            </a>
-        </span>
-    </button>
+                  <button>
+                      <span>
+                          <a href="{{this.linkedin}}"> 
+                              <i class="fa fa-linkedin-square fa-2x" aria-hidden="true"></i>
+                          </a>
+                      </span>
+                  </button>
 
-    <button>
-        <span>
-            <a href="{{this.twitter}}"> 
-                <i class="fa fa-twitter-square fa-2x" aria-hidden="true"></i>
-            </a>
-        </span>
-    </button>
+                  <button>
+                      <span>
+                          <a href="{{this.twitter}}"> 
+                              <i class="fa fa-twitter-square fa-2x" aria-hidden="true"></i>
+                          </a>
+                      </span>
+                  </button>
 
 
 
@@ -81,7 +81,11 @@
             {{/each}}
         {{else}}
             <div class="card-back">
-                <div class="details"> There are no contacts to display. Press '+' to get started</div>
+                <div class="details"> 
+                  <h4>
+                    There are no contacts to display. Press '+' to get started
+                  </h4>
+                </div>
             </div>
         {{/if}}
         {{!-- 

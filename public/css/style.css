@@ -5,14 +5,12 @@ body {
   height: 100%;
   overflow: hidden;
 }
-
 body {
   background: linear-gradient(to bottom left, #33ccff 5%, #9900cc 100%);
   background-size: cover;
   background-position: 50% 50%;
   background-repeat: no-repeat;
 }
-
 /*---------------------------FONT STYLING*/
 p {
   font-family: "Raleway", sans-serif;
@@ -21,7 +19,6 @@ p {
   letter-spacing: 0.1em;
   color: #fff;
 }
-
 h1 {
   font-family: "Montserrat", sans-serif;
   font-weight: 300;
@@ -31,25 +28,22 @@ h1 {
   text-align: center;
   text-shadow: 1px 1px 1px #000;
 }
-
 h3 {
   color: #fff;
   font-family: "Raleway", sans-serif;
   text-transform: uppercase;
-  font-weight: 400;
+  font-weight: 300;
   letter-spacing: 0.1em;
   font-size: 15px;
   text-align: center;
 }
-
 h4 {
   font-family: "Montserrat", sans-serif;
   letter-spacing: 0.06em;
-  font-weight: 400;
+  font-weight: 300;
   font-size: 20px;
   color: #fff;
 }
-
 h5 {
   color: #fff;
   font-family: "Raleway", sans-serif;
@@ -58,12 +52,10 @@ h5 {
   letter-spacing: 0.1em;
   font-size: 12px;
 }
-
 hr {
   border-top: 1px solid #fff;
   width: 200px;
 }
-
 /*CREATE ACCOUNT PAGE*/
 /*---------------------------FONT STYLING*/
 label {
@@ -73,7 +65,6 @@ label {
   letter-spacing: 0.2em;
   font-weight: 600;
 }
-
 #photoFile {
   background: rgba(255, 255, 255, 0.2);
   color: #fff;
@@ -82,7 +73,6 @@ label {
   letter-spacing: 0.1em;
   max-width: 100%;
 }
-
 legend {
   color: #fff;
   font-family: "Montserrat", sans-serif;
@@ -90,23 +80,19 @@ legend {
   font-weight: 600;
   letter-spacing: 0.1em;
 }
-
 .form-check-label {
   text-transform: capitalize;
   color: #b0b0b0;
   font-family: "Raleway", sans-serif;
 }
-
 /*---------------------------NAVBAR STYLING*/
 .navbar {
   background: rgba(255, 255, 255, 0.2);
   box-shadow: 0 12px 16px 0 rgba(0, 0, 0, 0.1), 0 17px 50px 0 rgba(0, 0, 0, 0.1);
 }
-
 input::-webkit-input-placeholder {
   color: #d3d3d3 !important;
 }
-
 .search-field {
   background: rgba(255, 255, 255, 0.5);
   border-style: none;
@@ -114,48 +100,39 @@ input::-webkit-input-placeholder {
   color: #000;
   width: 70%;
 }
-
 .form-inline {
   float: right;
 }
-
 .navbar-light .navbar-toggler {
   border-style: none;
 }
-
 .fa-bars-connection {
   margin-top: 12px;
   color: #fff;
 }
-
 .fa-plus-connection {
   color: #fff;
   margin-left: 15px;
 }
-
 .fa-bars-style {
   color: #fff;
   padding: 14px 0 13px 0;
 }
-
 .fa-plus-style {
   color: #fff;
   float: right;
   padding: 14px 0 13px 0;
 }
-
 /*SIGN IN PAGE*/
 /*---------------------------SIGN IN AND SIGN UP FORM STYLING*/
 form {
   display: block;
 }
-
 .form-signin {
   max-width: 330px;
   padding: 15px;
   margin: 0 auto;
 }
-
 .form-box-style {
   background: transparent;
   border-width: 2px;
@@ -165,12 +142,10 @@ form {
   font-weight: 200;
   letter-spacing: 0.1em;
 }
-
 .form-box-style:focus {
   background: rgba(255, 255, 255, 0.1);
   color: #000;
 }
-
 .custom-select {
   background: transparent;
   border-width: 2px;
@@ -180,16 +155,13 @@ form {
   font-weight: 200;
   letter-spacing: 0.1em;
 }
-
 .custom-select:focus {
   background: rgba(255, 255, 255, 0.1);
   color: #000;
 }
-
 input::-webkit-input-placeholder {
   color: #b0b0b0 !important;
 }
-
 .sign-in-btn {
   background-color: #9370db;
   color: #fff;
@@ -201,21 +173,17 @@ input::-webkit-input-placeholder {
   box-shadow: 0 12px 16px 0 rgba(0, 0, 0, 0.24),
     0 17px 50px 0 rgba(0, 0, 0, 0.19);
 }
-
 .sign-in-btn:hover {
   background: #8c6add;
 }
-
 a,
 a:hover,
 a:active {
   color: #fff;
   text-decoration: none;
 }
-
 /*PROFILE PAGE*/
 /*---------------------------LOCATION STYLING*/
-
 .city h5 {
   position: relative;
   color: lightgrey;
@@ -225,7 +193,6 @@ a:active {
   letter-spacing: 0.1em;
   font-size: 12px;
 }
-
 /*---------------------------HIRE ME SLIDER STYLING*/
 /* The switch - the box around the slider */
 .switch {
@@ -234,12 +201,10 @@ a:active {
   width: 58px;
   height: 26px;
 }
-
 /* Hide default HTML checkbox */
 .switch input {
   display: none;
 }
-
 /* The slider */
 .slider {
   position: absolute;
@@ -251,7 +216,6 @@ a:active {
   -webkit-transition: 0.4s;
   transition: 0.4s;
 }
-
 .slider:before {
   position: absolute;
   content: "";
@@ -263,30 +227,24 @@ a:active {
   -webkit-transition: 0.4s;
   transition: 0.4s;
 }
-
 input:checked + .slider {
   background-color: #3cfca9;
 }
-
 input:focus + .slider {
   box-shadow: 0 0 1px #3cfca9;
 }
-
 input:checked + .slider:before {
   -webkit-transform: translateX(30px);
   -ms-transform: translateX(30px);
   transform: translateX(30px);
 }
-
 /* Rounded sliders */
 .slider.round {
   border-radius: 26px;
 }
-
 .slider.round:before {
   border-radius: 50%;
 }
-
 .img-circle {
   display: block;
   width: 120px;
@@ -300,12 +258,10 @@ input:checked + .slider:before {
   border-radius: 99em;
   box-shadow: 0 3px 2px rgba(0, 0, 0, 0.3);
 }
-
 #wrapper {
   display: inline-block;
   margin: 0 auto;
 }
-
 #bg {
   z-index: -1;
   background: rgba(255, 255, 255, 0.3);
@@ -322,17 +278,14 @@ input:checked + .slider:before {
   box-shadow: 0 12px 16px 0 rgba(0, 0, 0, 0.24),
     0 17px 50px 0 rgba(0, 0, 0, 0.1);
 }
-
 .container {
   z-index: 2;
   position: relative;
 }
-
 #container-wrap {
   z-index: -3;
   position: relative;
 }
-
 #bio {
   overflow-y: scroll;
   height: 200px;
@@ -341,17 +294,14 @@ input:checked + .slider:before {
   font-size: 14px;
   margin: 0 auto;
 }
-
 .fa-linkedin-square,
 .fa-twitter-square {
   color: #fff;
   margin: 5px;
 }
-
 .fa-share-square-o {
   color: #99ff99;
 }
-
 /*CONNECTIONS PAGE*/
 /*---------------------------SORT BUTTON STYLING*/
 .sort-btn {
@@ -369,13 +319,10 @@ input:checked + .slider:before {
   margin-left: 5px;
   margin-right: 5px;
 }
-
 .sort-btn:hover {
   background-color: #3cfca9;
 }
-
 /*CARD STYLING*/
-
 .card-img {
   height: 100%;
   width: 100px;
@@ -384,7 +331,6 @@ input:checked + .slider:before {
   clear: both;
   border: 3px solid #fff;
 }
-
 .card-back {
   text-align: left;
   border-radius: 10px;
@@ -394,7 +340,6 @@ input:checked + .slider:before {
   line-height: 0.5em;
   margin-bottom: 10px;
 }
-
 .more-btn {
   background-color: #9370db;
   border-style: none;
@@ -406,22 +351,18 @@ input:checked + .slider:before {
   text-transform: uppercase;
   letter-spacing: 0.1em;
 }
-
 .details {
   display: inline-block;
   margin-left: 10px;
 }
-
 .wrapper {
   width: 90%;
   margin: 0 auto;
 }
-
 .scroll {
   overflow-y: scroll;
   height: 500px;
 }
-
 /*MAIN PAGE - QLINK CONNECT*/
 .user-code {
   width: 200px;
@@ -431,16 +372,14 @@ input:checked + .slider:before {
   box-shadow: 0 14px 28px rgba(0, 0, 0, 0.1), 0 10px 10px rgba(0, 0, 0, 0.1);
   margin: 50px auto;
   font-family: "Montserrat", sans-serif;
-  font-weight: 200;
+  font-weight: 300;
   letter-spacing: 0.05em;
   font-size: 34px;
   color: #fff;
   line-height: 200px;
   text-align: center;
 }
-
 /*CONNECT EDIT PAGE*/
-
 .img-connect {
   display: block;
   width: 150px;
@@ -454,5 +393,3 @@ input:checked + .slider:before {
   border-radius: 99em;
   box-shadow: 0 3px 2px rgba(0, 0, 0, 0.3);
 }
-
-/*push check*/

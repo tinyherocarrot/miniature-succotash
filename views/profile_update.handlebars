@@ -3,66 +3,66 @@
 </div>
 
 <div class="container">
-    <form action="/update-profile" method="PUT" class="scroll">
+    <form action="/profile/update" method="PUT" class="scroll">
 
         <div class="form-group">
           <label for="inputName">First Name</label>
-          <input type="text" class="form-control form-box-style" id="inputName" value={{this.first_name}} name="first_name">
+          <input type="text" class="form-control form-box-style" id="inputName" value={{results.first_name}} name="first_name">
         </div>
  
         <div class="form-group">
           <label for="inputName">Last Name</label>
-          <input type="text" class="form-control form-box-style" id="inputName" value={{this.last_name}} name="last_name">
+          <input type="text" class="form-control form-box-style" id="inputName" value={{results.last_name}} name="last_name">
         </div>
 
         <div class="form-group">
           <label for="inputEmail">Email</label>
-          <input type="email" class="form-control form-box-style" id="inputEmail" aria-describedby="emailHelp" name="email" value={{this.email}}>
+          <input type="email" class="form-control form-box-style" id="inputEmail" aria-describedby="emailHelp" name="email" value={{results.email}}>
         </div>
           
         <div class="form-group">
           <label for="inputPassword">Password</label>
-          <input type="password" class="form-control form-box-style" id="inputPassword" name="user_password" value={{this.user_password}}>
+          <input type="password" class="form-control form-box-style" id="inputPassword" name="user_password" value={{results.user_password}}>
         </div>
 
         <div class="form-group">
           <label for="inputCity">City</label>
-          <input type="text" class="form-control form-box-style" id="inputCity" name="city" value={{this.city}}>
+          <input type="text" class="form-control form-box-style" id="inputCity" name="city" value={{results.city}}>
         </div>
 
         <div class="form-group">
           <label for="inputCompany">Company</label>
-          <input type="text" class="form-control form-box-style" id="inputCompany" name="organization" value={{this.organization}}>
+          <input type="text" class="form-control form-box-style" id="inputCompany" name="organization" value={{results.organization}}>
         </div>
 
         <div class="form-group">
           <label for="inputTitle">Job Title</label>
-          <input type="text" class="form-control form-box-style" id="inputTitle" name="role" value={{this.role}}>
+          <input type="text" class="form-control form-box-style" id="inputTitle" name="role" value={{results.role}}>
         </div>
 
         <div class="form-group">
           <label for="textarea">Your Bio</label>
-          <textarea class="form-control form-box-style" id="inputBio" rows="3" name="bio" value={{this.bio}}></textarea>
+          <textarea class="form-control form-box-style" id="inputBio" rows="3" name="bio" value={{results.bio}}></textarea>
         </div>
 
         <div class="form-group">
           <label for="photoFile">Upload Photo</label>
-          <input type="file" class="form-control-file" id="photoFile" value={{this.user_photo}} name="user_photo">
+          <input type="file" class="form-control-file" id="photoFile" value={{results.user_photo}} name="user_photo">
         </div>
 
         <div class="form-group">
           <label for="inputLinkedin">LinkedIn</label>
-          <input type="url" class="form-control form-box-style" id="inputLinkedin" value={{this.linkedin}} name="linkedin">
+          <input type="url" class="form-control form-box-style" id="inputLinkedin" value={{results.linkedin}} name="linkedin">
         </div>
 
         <div class="form-group">
           <label for="inputTwitter">Twitter</label>
-          <input type="url" class="form-control form-box-style" id="inputTwitter" value={{this.twitter}} name="twitter">
+          <input type="url" class="form-control form-box-style" id="inputTwitter" value={{results.twitter}} name="twitter">
         </div>
 
         <div class="form-group">
           <label for="inputWebsite">Your Website</label>
-          <input type="url" class="form-control form-box-style" id="inputWebsite" value={{this.other_website}} name="other_website">
+          <input type="url" class="form-control form-box-style" id="inputWebsite" value={{results.other_website}} name="other_website">
         </div>
 
         {{!-- <fieldset class="form-group">

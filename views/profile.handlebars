@@ -36,33 +36,44 @@
     <div class="container text-center">
         <img class="img-circle" src="./images/profile_pic.jpg">
         <h4>{{results.first_name}} {{results.last_name}}</h4>
+        <a href="/profile/edit">
+            <i class="fa fa-pencil" aria-hidden="true"></i>
+        </a>
         
         <div class="city">
             <!-- <img src="images/location.svg" alt="location"> -->
-            <h5><i class="fa fa-map-marker" aria-hidden="true"></i> Chicago</h5>
+            <h5><i class="fa fa-map-marker" aria-hidden="true"></i>{{results.city}}</h5>
         </div>
         
         <div id="wrapper">
             <h5 style="float: left; margin-top: 8px; margin-right: 10px;">NOT LOOKING</h5>
             <div style="float: left;">  
                 <label class="switch">
-                    <input type="checkbox">
+                    {{#if results.hire_me}}
+                        <input type="checkbox" checked>     
+                    {{else}}
+                        <input type="checkbox">
+                    {{/if}}
                     <span class="slider round"></span>
                 </label>
             </div>
             <h5 style="float: left; margin-top: 8px; margin-left: 10px;">HIRE ME</h5>
         </div>
 
-        <h5>Full-Stack Developer</h5>
-        <h5>Sick Company</h5>
+        <h5>{{results.organization}}</h5>
+        <h5>{{results.role}}</h5>
 
         <div id="bio">
             <p>
-                Lorem is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
+                {{results.bio}}
             </p>
         </div>
-
-        <i class="fa fa-linkedin-square fa-2x" aria-hidden="true"></i>
-        <i class="fa fa-twitter-square fa-2x" aria-hidden="true"></i>
+        
+        <a href={{results.linkedin}}>
+            <i class="fa fa-linkedin-square fa-2x" aria-hidden="true"></i>    
+        </a>
+        <a href={{results.twitter}}>
+            <i class="fa fa-twitter-square fa-2x" aria-hidden="true"></i>
+        </a>
     </div>
 </div>
