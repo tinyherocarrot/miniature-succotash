@@ -24,7 +24,7 @@ module.exports = function(app) {
 	// root, routes to login.handlebars
 	app.get("/", function(req, res) {
 		if (req.session.user_id) {
-			res.redirect(`/connections/${req.session.user_id}`);
+			res.redirect(`/connections/`);
 		} else {
 			res.render("login", {});
 		}
