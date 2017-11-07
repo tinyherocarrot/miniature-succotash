@@ -3,64 +3,69 @@
 </div>
 
 <div class="container">
-    <form class="scroll">
+    <form action="/update-profile" method="PUT" class="scroll">
 
         <div class="form-group">
-          <label for="inputName">{{this.first_name}} {{this.last_name}}</label>
-          <input type="text" class="form-control form-box-style" id="inputName" placeholder="Enter Full Name">
+          <label for="inputName">First Name</label>
+          <input type="text" class="form-control form-box-style" id="inputName" value={{this.first_name}} name="first_name">
+        </div>
+ 
+        <div class="form-group">
+          <label for="inputName">Last Name</label>
+          <input type="text" class="form-control form-box-style" id="inputName" value={{this.last_name}} name="last_name">
         </div>
 
         <div class="form-group">
-          <label for="inputEmail">{{this.email}}</label>
-          <input type="email" class="form-control form-box-style" id="inputEmail" aria-describedby="emailHelp" placeholder="Enter email">
+          <label for="inputEmail">Email</label>
+          <input type="email" class="form-control form-box-style" id="inputEmail" aria-describedby="emailHelp" name="email" value={{this.email}}>
         </div>
           
         <div class="form-group">
-          <label for="inputPassword">{{this.user_password}}</label>
-          <input type="password" class="form-control form-box-style" id="inputPassword" placeholder="Enter Password">
+          <label for="inputPassword">Password</label>
+          <input type="password" class="form-control form-box-style" id="inputPassword" name="user_password" value={{this.user_password}}>
         </div>
 
         <div class="form-group">
-          <label for="inputCity">{{this.city}}</label>
-          <input type="text" class="form-control form-box-style" id="inputCity" placeholder="Enter City">
+          <label for="inputCity">City</label>
+          <input type="text" class="form-control form-box-style" id="inputCity" name="city" value={{this.city}}>
         </div>
 
         <div class="form-group">
-          <label for="inputCompany">{{this.organization}}</label>
-          <input type="text" class="form-control form-box-style" id="inputCompany" placeholder="Enter Company">
+          <label for="inputCompany">Company</label>
+          <input type="text" class="form-control form-box-style" id="inputCompany" name="organization" value={{this.organization}}>
         </div>
 
         <div class="form-group">
-          <label for="inputTitle">{{this.role}}</label>
-          <input type="text" class="form-control form-box-style" id="inputTitle" placeholder="Enter Job Title">
+          <label for="inputTitle">Job Title</label>
+          <input type="text" class="form-control form-box-style" id="inputTitle" name="role" value={{this.role}}>
         </div>
 
         <div class="form-group">
-          <label for="textarea">{{this.bio}}</label>
-          <textarea class="form-control form-box-style" id="inputBio" rows="3"></textarea>
+          <label for="textarea">Your Bio</label>
+          <textarea class="form-control form-box-style" id="inputBio" rows="3" name="bio" value={{this.bio}}></textarea>
         </div>
 
         <div class="form-group">
           <label for="photoFile">Upload Photo</label>
-          <input type="file" class="form-control-file" id="photoFile">
+          <input type="file" class="form-control-file" id="photoFile" value={{this.user_photo}} name="user_photo">
         </div>
 
         <div class="form-group">
-          <label for="inputLinkedin">{{this.linkedin}}</label>
-          <input type="url" class="form-control form-box-style" id="inputLinkedin" placeholder="Paste your LinkedIn URL">
+          <label for="inputLinkedin">LinkedIn</label>
+          <input type="url" class="form-control form-box-style" id="inputLinkedin" value={{this.linkedin}} name="linkedin">
         </div>
 
         <div class="form-group">
-          <label for="inputTwitter">{{this.twitter}}</label>
-          <input type="url" class="form-control form-box-style" id="inputTwitter" placeholder="Paste your Twitter URL">
+          <label for="inputTwitter">Twitter</label>
+          <input type="url" class="form-control form-box-style" id="inputTwitter" value={{this.twitter}} name="twitter">
         </div>
 
         <div class="form-group">
-          <label for="inputWebsite">{{this.other_website}}</label>
-          <input type="url" class="form-control form-box-style" id="inputWebsite" placeholder="Paste your Personal Website URL">
+          <label for="inputWebsite">Your Website</label>
+          <input type="url" class="form-control form-box-style" id="inputWebsite" value={{this.other_website}} name="other_website">
         </div>
 
-        <fieldset class="form-group">
+        {{!-- <fieldset class="form-group">
           <legend>Ready to Share your Talent?</legend>
           <div class="form-check">
             <label class="form-check-label">
@@ -74,10 +79,19 @@
               Not Looking
             </label>
           </div>
-        </fieldset>
+        </fieldset> --}}
+
+        <div class="form-group">
+          <label for="formCustomSelect">Ready to share your talent?</label>
+          <select class="custom-select" id="formCustomSelect">
+            <option selected>Choose...</option>
+              <option value="hireme">Hire Me</option>
+              <option value="notlooking">Not Looking</option>
+          </select>
+        </div>
 
         <button type="submit" class="btn sign-in-btn btn-lg btn-block" id="create-new-account">
-            <a>Update profile</a>
+            <a>Save Changes</a>
         </button>
 
     </form>

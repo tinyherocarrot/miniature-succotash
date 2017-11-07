@@ -1,5 +1,4 @@
 var db = require("../models/");
-// res.session
 
 module.exports = function(app) {
 	var path = require("path");
@@ -32,7 +31,7 @@ module.exports = function(app) {
 	});
 	// signup routes to createaccount.handlebars
 	app.get("/signup", function(req, res) {
-		res.render("createaccount", {});
+		res.render("profile_create", {});
 	});
 	// signin routes to get account information using email and password
 	app.post("/signin", function(req, res) {
@@ -139,7 +138,7 @@ module.exports = function(app) {
 	app.post("/signup", function(req, res) {
 		console.log("Got: ", req.body, req.method, req.path);
 		var is_looking;
-		if (req.body.hire_me === true) {
+		if (req.body.hireme === true) {
 			is_looking = true;
 		} else {
 			is_looking = false;
@@ -174,26 +173,45 @@ module.exports = function(app) {
 						}
 					)
 					.then(results => {
-						res.redirect(`profile/${res.session.user_id}`);
+						res.redirect(`profile/`);
 					});
 			});
 	});
 
 	// PUT route for updating a User profile
-	app.put("/api/users/:id", function(req, res) {
+	app.put("/update-profile", function(req, res) {
 		console.log("Got: ", req.body, req.method, req.path);
-
+		var is_looking;
+		if (req.body.hire_me === true) {
+			is_looking = true;
+		} else {
+			is_looking = false;
+		}
+		console.log("id ", req.session.user_id);
 		db.User
 			.update(
-				{},
 				{
-					where: { id: req.params.id }
+					first_name: req.body.first_name,
+					last_name: req.body.last_name,
+					email: req.body.email,
+					user_password: req.body.user_password,
+					city: req.body.city,
+					organization: req.body.organization,
+					role: req.body.role,
+					bio: req.body.bio,
+					user_photo: req.body.user_photo,
+					linkedin: req.body.linkedin,
+					twitter: req.body.twitter,
+					other_website: req.body.other_website,
+					hire_me: is_looking
+				},
+				{
+					where: { user_id: req.session.user_id }
 				}
 			)
 			.then(results => {
-				console.log("profile successfully updated");
-				res.json(results);
-				// res.end();
+				console.log("after a profile update ", results);
+				// res.render("profile", results);
 			});
 	});
 
