@@ -6,7 +6,7 @@
         </span>
     </button>
     <form class="form-inline my-2 my-lg-0 justify-content-end">
-        <input class="search-field form-control mr-sm-2" type="text" placeholder="&#xf002;" style="font-family: Arial, FontAwesome;">
+        <input class="search-field form-control mr-sm-2" id="" type="text" placeholder="&#xf002;" style="font-family: Arial, FontAwesome;">
         <a href="/share"> 
             <i class="fa fa-plus fa-plus-connection fa-lg" aria-hidden="true"></i>
         </a>
@@ -39,14 +39,14 @@
 
     {{!-- Contacts display here --}}
     <div class="scroll">
-        {{#if results.length}}
+        {{#if connections.length}}
             {{#each connections}}
                 <div class="card-back">
-                	<img class="card-img" src="./images/profile_pic.jpg">
+                	<img class="card-img" src="{{this.user_photo}}">
                 	<div class="details">
-                		<h4>{{this.first_name}}{{this.last_name}}</h4>
-                	    <p>Where they Work</p>
-                        <p>Job Title</p>
+                		<h4>{{this.first_name}} {{this.last_name}}</h4>
+                	    <p>{{this.organization}}</p>
+                      <p>{{this.role}}</p>
 
 
                 	    {{!-- <button class="btn more-btn btn-sm">Full Profile</button> --}}
@@ -54,8 +54,9 @@
                         <p>{{this.bio}}</p>
                     
               {{!-- add event and notes to DB under initiator --}}
-                    <p>{{this.event}}</p>
-                    <p>{{this.notes}}</p>
+                    <p>Met at: {{this.createdAt}}</p>
+                    <p>Meeting Place: {{this.meeting_place}}</p>
+                    <p>Notes: {{this.user_notes}}</p>
 
     <button>
         <span>

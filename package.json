@@ -5,16 +5,18 @@
   "main": "server.js",
   "dependencies": {
     "body-parser": "^1.18.2",
+    "electron": "^1.7.9",
     "express": "^4.16.2",
     "express-handlebars": "^3.0.0",
     "express-session": "^1.15.6",
     "method-override": "^2.3.10",
     "mysql2": "^1.4.2",
+    "nightmare": "^2.10.0",
     "sequelize": "^4.22.0"
   },
   "devDependencies": {},
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "node connectionspagetest.js ",
     "start": "node server.js"
   },
   "author": "",
