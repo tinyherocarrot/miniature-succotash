@@ -18,13 +18,13 @@
     <div class="collapse navbar-collapse" id="navbarContent">
         <ul class="navbar-nav mr-auto">
             <li class="nav-item">
-                <a class="nav-link" href="/profile">Profile</a>
+                <a class="nav-link" href="/profile"><h4>Profile</h4></a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="/connections">Connections</a>
+                <a class="nav-link" href="/connections"><h4>Connections</h4></a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="/" id="sign-out-button">Sign Out</a>
+                <a class="nav-link" href="/" id="sign-out-button"><h4>Sign Out</h4></a>
             </li>
         </ul>
     </div>
@@ -34,17 +34,15 @@
 <div id="container-wrap">
     <div id="bg"></div>
     <div class="container text-center">
-        <img class="img-circle" src={{results.user_photo}}>
-        
-        <h4>{{results.first_name}} {{results.last_name}}</h4>
-        <a href="/profile/edit">
+        <img class="img-circle" src="./images/placeholder.png">
+        <div class="card-profile">
+        <h4>{{results.first_name}} {{results.last_name}}  <a href="/profile/edit">
             <i class="fa fa-pencil" aria-hidden="true"></i>
-        </a>
+        </a></h4>
+      
         
         <div class="city">
-            <!-- <img src="images/location.svg" alt="location"> -->
-            <h5><i class="fa fa-map-marker" aria-hidden="true"></i>{{results.city}}</h5>
-
+            <h5><i class="fa fa-map-marker" aria-hidden="true"></i>&nbsp; {{results.city}}</h5>
         </div>
         
         <div id="wrapper">
@@ -61,21 +59,34 @@
             </div>
             <h5 style="float: left; margin-top: 8px; margin-left: 10px;">HIRE ME</h5>
         </div>
-
-        <h5>{{results.organization}}</h5>
-        <h5>{{results.role}}</h5>
+<br>
+        <h6>{{results.organization}},</h6>
+        <h6>{{results.role}}</h6>
 
         <div id="bio">
-            <p>
+            <p style="line-height: 2em;">
                 {{results.bio}}
             </p>
         </div>
         
-        <a href={{results.linkedin}}>
-            <i class="fa fa-linkedin-square fa-2x" aria-hidden="true"></i>    
+
+<button class="social-media">
+    <span>
+        <a href="{{results.linkedin}}"> 
+            <i class="fa fa-linkedin-square fa-2x" aria-hidden="true" style="margin-right: 20px;"></i>
         </a>
-        <a href={{results.twitter}}>
+    </span>
+</button>
+
+<button class="social-media">
+    <span>
+        <a href="{{results.twitter}}"> 
             <i class="fa fa-twitter-square fa-2x" aria-hidden="true"></i>
         </a>
+    </span>
+</button>
+
+</div>
+
     </div>
 </div>
