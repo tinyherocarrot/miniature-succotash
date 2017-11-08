@@ -1,12 +1,6 @@
 # Qlink - To New Connections
 <!-- ------------------------------------------------------------ -->
 
-## Roles
-* Andrew Huang: Scrum, Git Guard, Back End
-* Ammad Shaikh: QA tests
-* Casey Aitken: Back End
-* Josie Bellini: Front End
-
 ## The Pitch
 ### HOW MIGHT WE...
 > *Make exchanging info with other professionals at an event streamlined and effective, by implementing an application to easily exchange and save business profile information, along with time and date of the meeting.*
@@ -26,6 +20,12 @@ Mary wants to get in contact with someone she met last week.
 2. User Profile: blurb, contact information, professional social links
 3. Save connections (in order of most recent), linked to the time and place of meeting, notes, added labels
 4. Search contacts by vCard fields, personal notes, by labels
+
+## Roles
+* Andrew Huang: Scrum, Git Guard, Back End
+* Ammad Shaikh: QA tests
+* Casey Aitken: Back End
+* Josie Bellini: Front End
 
 ## Tools and Technologies
 To build the front end of Qlink, we used HTML5, CSS3, and Bootstrap 4. In the back end, we used MySQL/Sequelize for the database, and Node, Express, and Handlebars for server/middleware.
