@@ -27,6 +27,7 @@ module.exports = function(app) {
 			res.redirect(`/connections/`);
 		} else {
 			res.render("login", {});
+			// console.log(req.session.user_id);
 		}
 	});
 	// signup routes to createaccount.handlebars
@@ -272,6 +273,14 @@ module.exports = function(app) {
 
 	// Routes for 'Users' Table
 	// ===============================================================================
+	//GET route for signout
+	app.get("/signout", function(req, res) {
+		// clears session data
+		req.session.user_id = null;
+		req.session.qlink_code = null;
+		res.render("login", {});
+	});
+
 	// GET route for viewing *all* the Users
 	app.get("/api/all-users", function(req, res) {
 		console.log("Got: ", req.body, req.method, req.path);
