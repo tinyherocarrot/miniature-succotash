@@ -41,18 +41,16 @@
     <input name="meeting_place" type="text" class="form-control form-box-style" id="inputCode" placeholder="Where did you meet?">
   </div>
 
-   <div class="form-group">
-          <textarea name="user_notes" class="form-control form-box-style" id="inputBio" placeholder="Save notes on your connection" rows="3"></textarea>
-    </div>
+  <div class="form-group">
+    <textarea name="user_notes" class="form-control form-box-style" id="inputBio" placeholder="Save notes on your connection" rows="3"></textarea>
+  </div>
 
-    <div name="user_id" style="display: none;">
-      {{results.user_id}}
-    </div>
+  <div style="display: none;">
+    <input name="target_id" value={{results.user_id}}>
+  </div>
 
+  <button type="submit" class="btn sign-in-btn btn-lg btn-block">Save Contact</button>
 
-
-  <button type="submit" class="btn sign-in-btn btn-lg btn-block"><a href="connections.html">Save Contact</a></button>
-
-
+</form>
 
 </div>
