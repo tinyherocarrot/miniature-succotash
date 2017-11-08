@@ -120,7 +120,7 @@ module.exports = function(app) {
 				var connections = [];
 				// Iterate through the array of all users
 				for (var i = 0; i < resObj.length; i++) {
-					// Only continue if user has at leat one connection
+					// Only continue if user has at least one connection
 					if (resObj[i].connections.length != 0) {
 						// Iterate through all user's connections
 						for (var j = 0; j < resObj[i].connections.length; j++) {
@@ -169,6 +169,7 @@ module.exports = function(app) {
 				// res.json(userObject);
 			});
 	});
+	app.post("/connections/search", function(req, res) {});
 	// loads the profile page, where your personal editable profile is displayed
 	app.get("/profile", function(req, res) {
 		db.User
@@ -368,6 +369,7 @@ module.exports = function(app) {
 	// Routes for 'Connections' Table
 	// ===============================================================================
 	// GET route for viewing all connections where user is the sender
+
 	app.get("/api/connections/", function(req, res) {
 		console.log("Got: ", req.body, req.method, req.path);
 
