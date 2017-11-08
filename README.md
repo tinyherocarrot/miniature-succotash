@@ -39,7 +39,9 @@ To build the front end of Qlink, we used HTML5, CSS3, and Bootstrap 4. In the ba
 There are a number of functionalities we were unable to implement with the time constraints of the project.
 1. _QR Code_. The aim of our application is to make networking at events as painless as possible. In future iterations we would like to build out QR codes to replace the six-digit codes that are currently assigned to users. 
 2. _Authorization_. Another goal for future iterations is easier and more secure authorization systems, specifically to build support for signing in with an LinkedIn account.
-3. _UI Components_. Other visions for future iterations include a unique and identifiable logo, and support for uploading user's profile pictures.
+3. _Search Connections_. Currently there is an unimplemented search bar on the Connections view. In future releases, users will be able to search their saved connections by fields, meeting place or time, or personal notes.
+4. _Application Walkthrough_. Future releases will also feature an explanation of our application on the home page.
+5. _UI Components_. Other visions for future iterations include a unique and identifiable logo, and support for uploading user's profile pictures.
 
 ## Links
 * [Trello Board](https://trello.com/b/2ntlhcNn/nubc-project-2)
