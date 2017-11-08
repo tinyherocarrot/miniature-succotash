@@ -1,31 +1,34 @@
 {{!-- NavBar --}}
 <nav class="navbar navbar-toggleable-md navbar-light bg-faded">
+    <span>
     <button class="navbar-toggler navbar-toggler-left" type="button" data-toggle="collapse" data-target="#navbarContent" aria-controls="navbarContent" aria-expanded="false" aria-label="Toggle navigation">
         <span>
             <i class="fa fa-bars fa-bars-connection fa-lg" aria-hidden="true"></i>
         </span>
     </button>
+    
+
     <form class="form-inline my-2 my-lg-0 justify-content-end">
         <input class="search-field form-control mr-sm-2" id="" type="text" placeholder="&#xf002;" style="font-family: Arial, FontAwesome;">
-        
-        <button class="button-clear">
-          <a href="/share"> 
-              <i class="fa fa-plus fa-plus-connection fa-lg" aria-hidden="true"></i>
-          </a>
-        </button>
-    </form>    
+    </form>  
 
+    <button class="button-clear">
+        <a href="/share"> 
+            <i class="fa fa-plus fa-plus-connection fa-lg" aria-hidden="true"></i>
+        </a>
+    </button> 
+</span>
     {{!-- Hamburger Menu --}}
     <div class="collapse navbar-collapse" id="navbarContent">
         <ul class="navbar-nav mr-auto">
             <li class="nav-item">
-                <a class="nav-link" href="/profile">Profile</a>
+                <a class="nav-link" href="/profile"><h4>Profile</h4></a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="/connections">Connections</a>
+                <a class="nav-link" href="/connections"><h4>Connections</h4></a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="/" id="sign-out-button">Sign Out</a>
+                <a class="nav-link" href="/" id="sign-out-button"><h4>Sign Out</h4></a>
             </li>
         </ul>
     </div>
@@ -36,8 +39,8 @@
 {{!-- Sort Contacts by... --}}
 <div class="wrapper">
     <div style="text-align: center;">
-        <button class="btn sort-btn btn-lg" id="listNew">New</button>
-        <button class="btn sort-btn btn-lg" id="listAlpha">Alphabetical</button>
+        <button class="btn sort-btn btn-lg" id="listNew" href="/connections/chrono">New</button>
+        <button class="btn sort-btn btn-lg" id="listAlpha" href="/connections/alpha">Alphabetical</button>
     </div>
 
     {{!-- Contacts display here --}}
@@ -45,40 +48,35 @@
         {{#if connections.length}}
             {{#each connections}}
                 <div class="card-back">
-                	<img class="card-img" src="{{this.user_photo}}">
+                	<img class="card-img" src="./images/placeholder.png">
                 	<div class="details">
                 		<h4>{{this.first_name}} {{this.last_name}}</h4>
-                	    <p>{{this.organization}}</p>
-                      <p>{{this.role}}</p>
-
+                      <h4 style="color: #673ab7; text-transform: capitalize">{{this.role}},</h4>
+                      <h4 style="color: #673ab7; text-transform: capitalize">{{this.organization}}</h4>
 
                 	    {{!-- <button class="btn more-btn btn-sm">Full Profile</button> --}}
                         {{!-- default hide info from here down --}}
                         <p>{{this.bio}}</p>
                     
               {{!-- add event and notes to DB under initiator --}}
-                    <p>Met at: {{this.createdAt}}</p>
-                    <p>Meeting Place: {{this.meeting_place}}</p>
-                    <p>Notes: {{this.user_notes}}</p>
+                    <h5 style="display: none;">Met at: {{this.createdAt}}</h5>
+                    <div><h6>Meeting Place:&nbsp </h6><p class="p_font">{{this.meeting_place}}</p></div>
+                    <div><h6>Notes:&nbsp </h6><p class="p_font">{{this.user_notes}}</p></div>
+                    <button class="social-media">
+                        <span>
+                            <a href="{{this.linkedin}}"> 
+                                <i class="fa fa-linkedin-square fa-2x" aria-hidden="true"></i>
+                            </a>
+                        </span>
+                    </button>
 
-                  <button>
-                      <span>
-                          <a href="{{this.linkedin}}"> 
-                              <i class="fa fa-linkedin-square fa-2x" aria-hidden="true"></i>
-                          </a>
-                      </span>
-                  </button>
-
-                  <button>
-                      <span>
-                          <a href="{{this.twitter}}"> 
-                              <i class="fa fa-twitter-square fa-2x" aria-hidden="true"></i>
-                          </a>
-                      </span>
-                  </button>
-
-
-
+                    <button class="social-media">
+                        <span>
+                            <a href="{{this.twitter}}"> 
+                                <i class="fa fa-twitter-square fa-2x" aria-hidden="true"></i>
+                            </a>
+                        </span>
+                    </button>
                 	</div>
                 </div>
             {{/each}}
