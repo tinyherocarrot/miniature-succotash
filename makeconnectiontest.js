@@ -3,10 +3,15 @@ var Nightmare = require('nightmare');
 var nightmare = Nightmare({ show: true });
 
 nightmare
-  .goto('https://qlink.com/main')
-  .type('#inputCode', '123456')
+   .goto('http://qlinkconnect.herokuapp.com/')
+  .type('#inputEmail', 'ammad_shake@yahoo.com')
+  .type('#inputPassword', 'popjimmy7')
+  .click('#sign-in')
+  .wait('.card-back')
+  .click('#connectBtn')
+  .type('#inputCode', '100000')
   .click('#addBtn')
-  .wait('form-group')
+  .wait('#inputBio')
   .type('#inputCode', 'Northwestern Bootcamp')
   .type('#inputBio', 'He likes carrots')
   .click('#submit')

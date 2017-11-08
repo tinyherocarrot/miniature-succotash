@@ -13,7 +13,7 @@ nightmare
   .type('#inputCity', 'Bikini Bottom')
   .type('#inputCompany', 'Chum Bucket')
   .type('#inputTitle', 'Executive Chef')
-  .type('#inputBio', 'Hi my name Sponge Bob, and I love Krabby Patties. I have a pet snail named Gary and my best friend is Patrick Starr. ')
+  .type('#inputBio', 'Hi my name is Sponge Bob, and I love Krabby Patties. I have a pet snail named Gary and my best friend is Patrick Starr. ')
   .type('#inputTwitter', 'https://twitter.com/SpongeBob')
   .click('#create-new-account')
   .wait('container-wrap')

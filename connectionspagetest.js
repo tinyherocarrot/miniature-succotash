@@ -6,11 +6,11 @@ nightmare
   .goto('http://localhost:3000/connections')
   .click('#listAlpha')
     .wait('.card-back')
+  .click('btn :nth-chil(0)')
   .click('#listNew')
     .wait('.card-back')
   .click('btn :nth-chil(0)')
     .wait('card-back')
-  .click('')
   .evaluate(function() {
     return document.querySelector('.card-back').href;
   })
