@@ -1,3 +1,7 @@
+.button-clear {
+  background: transparent;
+  border: none;
+}
 /*---------------------------APP BACKGROUND STYLING*/
 html,
 body {
