@@ -2,10 +2,10 @@
 <!-- ------------------------------------------------------------ -->
 
 ## Roles
-* Andrew: Scrum, Git Guard, Back End
-* Ammad: QA tests
-* Casey: Back End
-* Josie: Front End
+* Andrew Huang: Scrum, Git Guard, Back End
+* Ammad Shaikh: QA tests
+* Casey Aitken: Back End
+* Josie Bellini: Front End
 
 ## The Pitch
 ### HOW MIGHT WE...
