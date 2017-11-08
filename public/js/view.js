@@ -6,7 +6,15 @@ $(document).ready(function() {
 
 	// Event Listeners
 	// ---------------------------------------------
+	$(document).on("click", "#listNew", listNew);
+	$(document).on("click", "#listNew", listAlpha);
 
 	// Functions
 	// ---------------------------------------------
+	function listNew(event) {
+		event.preventDefault();
+		$.get({}).done();
+	}
+
+	function listAlpha(event) {}
 });

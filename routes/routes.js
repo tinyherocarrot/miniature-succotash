@@ -63,113 +63,141 @@ module.exports = function(app) {
 			});
 	});
 
-	// loads the connections page, where all your connections in the db are displayed
-	app.get("/connections", (req, res) => {
+	// loads the connections.html page, where all your connections in the db are displayed
+	app.get("/connections/:sort?", (req, res) => {
+		// *********HARD CODED DATA TO TEST SORTING******
+		// req.session.user_id = 1;
+		// ---------------------------
+		// req.body.sortMethod = "chrono";
+		// OR
+		// req.body.sortMethod = "alpha";
+		// ---------------------------
+		// req.body.sortOrder = "DESC";
+		// OR
+		// req.body.sortOrder = "ASC";
+
+		//***********************************************
+
+		//---------------------------------------------------
+		// User Id is defined from req
 		var user_id = parseInt(req.session.user_id);
+		//---------------------------------------------------
+		// Sort method and sort order are defined from req
+		var sortMethod = req.params.sort; // alpha/chrono
+		var sortOrder = "DESC"; // ASC/DESC
+		//---------------------------------------------------
+		// One of these sorting objects will be passed into the User.findAll()
+		// Here, they receive the chosen sort order
+		var sortAlphabetical = {
+			order: [["first_name", sortOrder]],
+			include: [{ model: db.Connections }]
+		};
+		var sortDate = {
+			include: [{ model: db.Connections }],
+			order: [[db.Connections, "createdAt", sortOrder]]
+		};
+		//---------------------------------------------------
+		// Here, 'sortAndJoin' is defined with the appropriate sort object
+		var sortAndJoin;
+		//
+		if (sortMethod === "alpha") {
+			sortAndJoin = sortAlphabetical;
+		} else {
+			sortAndJoin = sortDate;
+		}
+		//---------------------------------------------------
+		// Join and Query the User table with the Connections table
+		db.User.findAll(sortAndJoin).then(users => {
+			// Make a map of user objects
+			const resObj = users.map(user => {
+				// Assign each object user data
 
-		db.User
-			.findAll(
-				{
-					include: [
-						{
-							model: db.Connections
-						}
-					]
-				}
-				// { order: [db.User, "createdAt", "ASC"] }
-			)
-			.then(users => {
-				// Make a map of user objects
+				return Object.assign(
+					{},
+					{
+						user_id: user.user_id,
+						first_name: user.first_name,
+						last_name: user.last_name,
+						email: user.email,
+						user_password: user.user_password,
+						city: user.city,
+						organization: user.organization,
+						role: user.role,
+						bio: user.bio,
+						user_photo: user.user_photo,
+						linkedin: user.linkedin,
+						twitter: user.twitter,
+						other_website: user.other_website,
+						connections: user.Connections.map(connection => {
+							return Object.assign(
+								{},
+								{
+									connection_id: connection.connection_id,
+									sender_id: connection.sender_id,
+									receiver_id: connection.receiver_id,
+									createdAt: connection.createdAt,
+									meeting_place: connection.meeting_place,
+									user_notes: connection.user_notes
+								}
+							);
+						})
+					}
+				);
+			});
 
-				const resObj = users.map(user => {
-					// Assign each object user data
+			var connections = [];
+			// Iterate through the array of all users
+			for (var i = 0; i < resObj.length; i++) {
+				// Only continue if user has at least one connection
+				if (resObj[i].connections.length != 0) {
+					// Iterate through all user's connections
+					for (var j = 0; j < resObj[i].connections.length; j++) {
+						// If the connection's sender_id matches the main user's ID..
+						if (resObj[i].connections[j].sender_id == user_id) {
+							// Append the time stamp to the user object
+							resObj[i].createdAt =
+								resObj[i].connections[j].createdAt;
 
-					return Object.assign(
-						{},
-						{
-							user_id: user.user_id,
-							first_name: user.first_name,
-							last_name: user.last_name,
-							email: user.email,
-							user_password: user.user_password,
-							city: user.city,
-							organization: user.organization,
-							role: user.role,
-							bio: user.bio,
-							user_photo: user.user_photo,
-							linkedin: user.linkedin,
-							twitter: user.twitter,
-							other_website: user.other_website,
-							connections: user.Connections.map(connection => {
-								return Object.assign(
-									{},
-									{
-										connection_id: connection.connection_id,
-										sender_id: connection.sender_id,
-										receiver_id: connection.receiver_id,
-										createdAt: connection.createdAt,
-										meeting_place: connection.meeting_place,
-										user_notes: connection.user_notes
-									}
-								);
-							})
-						}
-					);
-				});
+							resObj[i].meeting_place =
+								resObj[i].connections[j].meeting_place;
 
-				var connections = [];
-				// Iterate through the array of all users
-				for (var i = 0; i < resObj.length; i++) {
-					// Only continue if user has at least one connection
-					if (resObj[i].connections.length != 0) {
-						// Iterate through all user's connections
-						for (var j = 0; j < resObj[i].connections.length; j++) {
-							// If the connection's sender_id matches the main user's ID..
-							if (resObj[i].connections[j].sender_id == user_id) {
-								// Append the time stamp to the user object
-								resObj[i].createdAt =
-									resObj[i].connections[j].createdAt;
+							resObj[i].user_notes =
+								resObj[i].connections[j].user_notes;
 
-								resObj[i].meeting_place =
-									resObj[i].connections[j].meeting_place;
+							// Push the object to the connections array
+							connections.push(resObj[i]);
 
-								resObj[i].user_notes =
-									resObj[i].connections[j].user_notes;
-
-								// Push the object to the connections array
-								connections.push(resObj[i]);
-
-								// Use this to view the current connections in Console Log
-								// console.log(
-								// 	"Connection ID:",
-								// 	resObj[i].connections[j].connection_id,
-								// 	"===>",
-								// 	"Sender ID #" +
-								// 		resObj[i].connections[j].sender_id,
-								// 	"was connected to",
-								// 	resObj[i].first_name,
-								// 	resObj[i].last_name,
-								// 	"on",
-								// 	resObj[i].connections[j].createdAt
-								// );
-							}
+							// Use this to view the current connections in Console Log
+							// console.log(
+							// 	"Connection ID:",
+							// 	resObj[i].connections[j].connection_id,
+							// 	"===>",
+							// 	"Sender ID #" +
+							// 		resObj[i].connections[j].sender_id,
+							// 	"was connected to",
+							// 	resObj[i].first_name,
+							// 	resObj[i].last_name,
+							// 	"on",
+							// 	resObj[i].connections[j].createdAt
+							// );
 						}
 					}
 				}
+			}
 
-				var userObject = {
-					connections: connections
-				};
+			var userObject = {
+				connections: connections
+			};
 
-				console.log(userObject.connections[0]);
+			// console.log(userObject.connections[0]);
 
-				res.render("connections", userObject);
+			res.render("connections", userObject);
 
-				// USE TO VIEW THE USER-CONNECTION JOIN OBJECTS (JSON)
-				// res.json(userObject);
-			});
+			// USE TO VIEW THE USER-CONNECTION JOIN OBJECTS (JSON)
+			// res.json(userObject);
+		});
 	});
-	app.post("/connections/search", function(req, res) {});
+
 	// loads the profile page, where your personal editable profile is displayed
 	app.get("/profile", function(req, res) {
 		db.User
