@@ -1,5 +1,5 @@
-# __Qlink__ -- To New Connections
-------------------------------------------------------------
+# Qlink - To New Connections
+<!-- ------------------------------------------------------------ -->
 
 ## Roles
 * Andrew: Scrum, Git Guard, Back End
@@ -11,12 +11,6 @@
 ### HOW MIGHT WE...
 > *Make exchanging info with other professionals at an event streamlined and effective, by implementing an application to easily exchange and save business profile information, along with time and date of the meeting.*
 
-## App Functionalities
-1. Login for user
-2. User Profile: blurb, contact information, professional social links
-3. Save connections (in order of most recent), linked to the time and place of meeting, notes, added labels
-4. Search contacts by vCard fields, personal notes, by labels
-
 ## User Stories
 ### A professional at a meetup/convention/fair:
 Mary goes to a meetup for blockchain in her area.
@@ -27,10 +21,15 @@ Mary wants to get in contact with someone she met last week.
 1. WANTS: She would like to recall contact info of someone she met at some blockchain meetup a while ago... She would also like to recall what they might have talked about.
 2. DOES: She goes to her 'saved', and searches based on what she remembers. She can find contact info, along with where and when she met that person.
 
-## Tools and Technologies
+## App Functionalities
+1. Login for user
+2. User Profile: blurb, contact information, professional social links
+3. Save connections (in order of most recent), linked to the time and place of meeting, notes, added labels
+4. Search contacts by vCard fields, personal notes, by labels
 
+## Tools and Technologies
 To build the front end of Qlink, we used HTML5, CSS3, and Bootstrap 4. In the back end, we used MySQL/Sequelize for the database, and Node, Express, and Handlebars for server/middleware.
-=================================================================
+
 ![entity relational diagram](public/images/erd.JPG)
 
 ![page paths diagram](public/images/page_paths.png)
