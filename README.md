@@ -36,7 +36,7 @@ To build the front end of Qlink, we used HTML5, CSS3, and Bootstrap 4. In the ba
 =================================================================
 
 ## Looking Forward
-There are a number of functionalities we were unable to implement with the time constraints of the project.
+There are a number of functionalities we were unable to implement within the time constraints of the project.
 1. _QR Code_. The aim of our application is to make networking at events as painless as possible. In future iterations we would like to build out QR codes to replace the six-digit codes that are currently assigned to users. 
 2. _Authorization_. Another goal for future iterations is easier and more secure authorization systems, specifically to build support for signing in with an LinkedIn account.
 3. _Geolocation_. Future iterations of Qlink will allow users to access their device's geolocation, and Google Maps API to save a meeting place.
